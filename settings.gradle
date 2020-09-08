@@ -1,2 +1,3 @@
+include ':module_asm'
 include ':app'
 rootProject.name = "WingAndroid"
