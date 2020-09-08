@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    repoName = 'maven'
+    userOrg = 'wning8258'                 //bintray.com用户名
+    groupId = 'com.wing.android'             //jcenter上的路径
+    artifactId = 'asm'        //项目名称
+    publishVersion = '1.0.0'          //版本号
+    desc = 'asm 测试'
+    website = 'https://github.com/wning8258/WingAndroid'
+}
 
 
 android {
