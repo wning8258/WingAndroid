@@ -21,12 +21,13 @@ public class MessengerService extends Service {
     /**
      * 通过
      */
-    private final Messenger messenger = new Messenger(new Handler(){
+    public   static Messenger messenger = new Messenger(new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case MyConstants.MSG_FROM_CLIENT:
                     Log.i(TAG, "server receive msg from client:" + msg.getData().getString("msg"));
+
                     Messenger messenger = msg.replyTo;
                     Message relpyMessage = Message.obtain(null, MyConstants.MSG_FROM_SERVICE);
                     Bundle bundle = new Bundle();
@@ -50,6 +51,19 @@ public class MessengerService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         //这里需要messenger的binder
+
+        Log.i(TAG, "server onBind binder :" + messenger.getBinder());
+
         return messenger.getBinder();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        boolean mockCrash = intent.getBooleanExtra("mockCrash", false);
+        Log.i(TAG, "server onStartCommand mockCrash :" + mockCrash);
+
+        if (mockCrash) {
+        }
+        return super.onStartCommand(intent, flags, startId);
     }
 }

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".messenger.MessengerService"/>
+        <service android:name=".messenger.MessengerService" android:process=":remote"/>
     </application>
 
 </manifest>
