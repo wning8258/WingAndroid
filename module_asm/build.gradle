@@ -20,4 +20,6 @@ dependencies {
     compileOnly gradleApi()
     //groovy sdk
     compileOnly localGroovy()
+    //view binding的本质 https://juejin.cn/post/6844904106268557326
+    //implementation group: 'androidx.databinding', name: 'databinding-compiler-common', version: '3.6.3'
 }
