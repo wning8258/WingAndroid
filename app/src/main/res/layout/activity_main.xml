@@ -44,4 +44,11 @@
         android:layout_gravity="center_horizontal"
         android:text="aidl_book_manager_btn"/>
 
+    <Button
+        android:id="@+id/binder_pool_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:text="binder_pool_btn"/>
+
 </LinearLayout>

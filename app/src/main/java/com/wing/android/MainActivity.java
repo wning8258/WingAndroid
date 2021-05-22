@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.wing.android.aidl.BookManagerActivity;
+import com.wing.android.bindpool.BinderPoolActivity;
 import com.wing.android.databinding.ActivityMainBinding;
 import com.wing.android.messenger.MessengerActivity;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mainBinding.messengerBtn.setOnClickListener(this);
         mainBinding.aidlBookManagerBtn.setOnClickListener(this);
+        mainBinding.binderPoolBtn.setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.aidl_book_manager_btn:
                 startActivity(new Intent(MainActivity.this, BookManagerActivity.class));
+                break;
+            case R.id.binder_pool_btn:
+                startActivity(new Intent(MainActivity.this, BinderPoolActivity.class));
                 break;
         }
     }
