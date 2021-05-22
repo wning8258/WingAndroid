@@ -1,5 +1,5 @@
 // Book.aidl
-package com.wing.android;
+package com.wing.android.messenger;
 
 // Declare any non-default types here with import statements
 

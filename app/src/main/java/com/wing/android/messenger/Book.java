@@ -1,4 +1,4 @@
-package com.wing.android;
+package com.wing.android.messenger;
 
 import android.os.Parcel;
 import android.os.Parcelable;
