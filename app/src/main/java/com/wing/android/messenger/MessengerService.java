@@ -58,12 +58,35 @@ public class MessengerService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        boolean mockCrash = intent.getBooleanExtra("mockCrash", false);
-        Log.i(TAG, "server onStartCommand mockCrash :" + mockCrash);
+    public void onCreate() {
+        super.onCreate();
+        Log.i(TAG, "server onCreate");
 
-        if (mockCrash) {
-        }
-        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
+        Log.i(TAG, "server onStart");
+
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.i(TAG, "server onStartCommand");
+        return super.onStartCommand(intent,flags,startId);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.i(TAG, "server onUnbind");
+        return super.onUnbind(intent);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "server onDestroy");
     }
 }
