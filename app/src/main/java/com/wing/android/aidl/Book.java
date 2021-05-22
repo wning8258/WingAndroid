@@ -1,4 +1,4 @@
-package com.wing.android.messenger;
+package com.wing.android.aidl;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,6 +6,14 @@ import android.os.Parcelable;
 /**
  * https://www.jianshu.com/p/23612b2cce30
  * https://www.cnblogs.com/rookiechen/p/5352053.html
+ * 如果aidl文件中，用到了自定义的parcelable对象，必须新建一个和它同名的aidl文件，并在其中声明它为Parcelable类型
+ *
+ * // Book.aidl
+ * package com.wing.android.aidl;
+ *
+ * // Declare any non-default types here with import statements
+ *
+ * parcelable Book;
  */
 public class Book implements Parcelable {
 
