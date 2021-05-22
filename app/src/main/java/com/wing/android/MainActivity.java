@@ -7,11 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.wing.android.aidl.BookManagerActivity;
 import com.wing.android.databinding.ActivityMainBinding;
 import com.wing.android.messenger.MessengerActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        CoordinatorLayout view = mainBinding.getRoot();
+        View view = mainBinding.getRoot();
         //view binding
         setContentView(view);
         setSupportActionBar(mainBinding.toolbar);
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         mainBinding.messengerBtn.setOnClickListener(this);
+        mainBinding.aidlBookManagerBtn.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.messenger_btn:
                 startActivity(new Intent(MainActivity.this, MessengerActivity.class));
+                break;
+            case R.id.aidl_book_manager_btn:
+                startActivity(new Intent(MainActivity.this, BookManagerActivity.class));
                 break;
         }
     }
