@@ -32,3 +32,47 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+/**
+ * configure阶段开始前的监听
+ */
+this.beforeEvaluate {
+    println "beforeEvaluate"
+}
+/**
+ * configure阶段结束后的监听
+ */
+this.afterEvaluate {
+    println "afterEvaluate"
+}
+this.gradle.buildFinished {
+    println "buildFinished"
+}
+this.gradle.beforeProject {
+    println "beforeProject"
+}
+this.gradle.afterProject { //等同于afterEvaluate
+    println "afterProject"
+}
+this.gradle.addListener()
+
+
+/**
+ * project相关api
+ */
+getProjects()
+
+def getProjects() {
+    println "...."
+    println "Root Project"
+    println "...."
+    //getAllprojects获取所有的project
+    //getSubprojects 获取子projects
+    this.getSubprojects()
+    this.getAllprojects().eachWithIndex { Project entry, int index ->
+        if (index == 0) {
+            println "Root project ${project.name}"
+        } else {
+            println "sub project ${project.name}"
+        }
+    }
+}
