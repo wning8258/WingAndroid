@@ -33,15 +33,31 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 /**
- * configure阶段开始前的监听
+ * Gradle脚本的执行分为三个过程：
+ *
+ * 初始化
+ * 分析有哪些module将要被构建，为每个module创建对应的 project实例。这个时候settings.gradle文件会被解析。
+ *
+ * 配置：处理所有的模块的 build 脚本，处理依赖，属性等。这个时候每个模块的build.gradle文件会被解析并配置，
+ * 这个时候会构建整个task的链表（这里的链表仅仅指存在依赖关系的task的集合，不是数据结构的链表）。
+ *
+ * 执行：根据task链表来执行某一个特定的task，这个 task所依赖的其他task都将会被提前执行。
  */
-this.beforeEvaluate {
+/**
+ * configure阶段开始前的监听
+ * 如果在build.gradle里设置beforeEvaluate会发现里面的代码根本没有被执行，
+ * 这是因为在初始化阶段build.gradle文件中的代码根本不会被执行，
+ * 执行build.gradle里的配置代码其实已经到了配置阶段，
+ * 这种在配置阶段之前执行的代码可以放到~/.gradle/init.d文件夹下的文件里执行，
+ * 这样的话这个执行脚本的代码就会成为本机所有工程都会执行的逻辑。
+ */
+this.beforeEvaluate {  //只监听当前工程的evaluate,监听不到其它工程的，即使是他的子工程
     println "beforeEvaluate"
 }
 /**
  * configure阶段结束后的监听
  */
-this.afterEvaluate {
+this.afterEvaluate {  //只监听当前工程的evaluate,监听不到其它工程的，即使是他的子工程
     println "afterEvaluate"
 }
 this.gradle.buildFinished {
@@ -75,4 +91,23 @@ def getProjects() {
             println "sub project ${project.name}"
         }
     }
+}
+
+//this.getParentProject()
+//
+//def getParentProject() {
+//    def name = this.getParent().name
+//    println "the parent project name is ${name}"
+//}
+//> Cannot get property 'name' on null object
+/**
+ * getParent为空，因为他是root project
+ */
+
+this.getRootProjects()
+
+def getRootProjects() {
+    def name = this.getRootProject().name
+    println this.getProject().getName() +"  ,the root project name is ${name}"
+    //WingAndroid  ,the root project name is WingAndroid
 }
