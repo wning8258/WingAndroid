@@ -1,14 +1,22 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
+def mCompileSdkVersion = 29
 
+def libAndroidAppcompat = "androidx.appcompat:appcompat:1.2.0"
+/**
+ * 定义扩展属性
+ */
+ext {
+    targetSdkVersion1 = 29
+}
 android {
-    compileSdkVersion 29
+    compileSdkVersion mCompileSdkVersion
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.wing.android"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion this.targetSdkVersion1
         versionCode 1
         versionName "1.0"
 
@@ -31,7 +39,7 @@ dependencies {
     implementation project(':module_asm')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation libAndroidAppcompat
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     testImplementation 'junit:junit:4.12'
