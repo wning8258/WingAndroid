@@ -86,11 +86,14 @@ def getProjects() {
     this.getSubprojects()
     this.getAllprojects().eachWithIndex { Project entry, int index ->
         if (index == 0) {
-            println "Root project ${project.name}"
+            println "Root project ${entry.name}"
         } else {
-            println "sub project ${project.name}"
+            println "sub project ${entry.name}"
         }
     }
+    //Root project WingAndroid
+    //sub project app
+    //sub project module_asm
 }
 
 //this.getParentProject()
@@ -110,4 +113,38 @@ def getRootProjects() {
     def name = this.getRootProject().name
     println this.getProject().getName() +"  ,the root project name is ${name}"
     //WingAndroid  ,the root project name is WingAndroid
+}
+
+/**
+ * =======================================================
+ * project api讲解
+ */
+this.project("app") { Project project ->
+    println("project api project name is :${project.name},group is ${project.group}")
+    apply plugin: "com.android.application"
+    group "com.test"
+    version "1.0.0-release"
+    dependencies {
+
+    }
+    android {
+
+    }
+}
+
+this.project("module_asm") {
+    //apply plugin: "com.android.library"
+    group "com.test"
+}
+//allprojects是对全局project的配置
+allprojects {
+   group "com.test2"
+}
+
+println "module_asm group is ${project("module_asm").group}"
+//subprojects只是对子project的配置
+subprojects { Project project ->
+    if (project.plugins.hasPlugin("com.android.library")) {  //表明是一个库工程
+        println("${project.name} is a android library module")
+    }
 }
