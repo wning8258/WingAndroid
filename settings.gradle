@@ -1,3 +1,7 @@
+include ':module_gradle'
+if (this.hasProperty("isIncludeModuleGroovy")? isIncludeModuleGroovy.toBoolean():false) {
+    include ':module_groovy'
+}
 include ':module_asm'
 include ':app'
 rootProject.name = "WingAndroid"

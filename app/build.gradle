@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.wing.android"
-        minSdkVersion 19
+        minSdkVersion mMinSdkVersion1
         targetSdkVersion this.targetSdkVersion1
         versionCode 1
         versionName "1.0"

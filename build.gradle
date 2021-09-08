@@ -164,3 +164,5 @@ subprojects { Project project ->
 //ext {
 //    targetSdkVersion1 = 29
 //}
+
+println "isIncludeModuleGroovy :" + isIncludeModuleGroovy.class  //class java.lang.String
