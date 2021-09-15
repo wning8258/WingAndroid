@@ -1,15 +1,62 @@
-apply plugin: 'groovy'
+apply plugin: 'groovy'  //引入 groovy 插件，groovy 插件继承了 java 插件
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation localGroovy()
+    implementation localGroovy()  //引入 Gradle 所带的 Groovy 库。
 }
-task renameGroovyToJava {
-    doLast{
-        delete "$buildDir/classes/java"
-        File file = new File("$buildDir/classes/groovy")
-        println file.renameTo("$buildDir/classes/java")
+
+/**
+ *  getRootDir  getBuildDir  getProjectDir
+ */
+println("getRootDir :"+ this.getRootDir().getAbsolutePath())  //:/Users/gmu/Android/workspace/WingAndroid
+println("getBuildDir :"+this.getBuildDir().getAbsolutePath())  ///Users/gmu/Android/workspace/WingAndroid/module_groovy/build
+println("getProjectDir :"+this.getProjectDir().getAbsolutePath())  ///Users/gmu/Android/workspace/WingAndroid/module_groovy
+
+/**
+ * 打印出build.gradle的内容
+ * @param path
+ * @return
+ */
+//println getContent("build.gradle")
+def getContent(String path) {
+    try {
+        //通过file api根据相对与当前prject的路径创建
+        def file = this.file(path)
+        //def files = this.files()  //多个文件
+        file.text
+    } catch (GradleException e) {
+        println("file not found")
     }
 }
-compileJava.finalizedBy compileGroovy
-compileGroovy.finalizedBy renameGroovyToJava
+/**
+ * 直接通过copy api拷贝
+ */
+//this.copy {
+//    from(file('build.gradle'))
+//    into (getRootDir().getAbsolutePath())
+//
+//    //重新命名
+//    rename {
+//        String srcFileName ->
+//            "module_groovy_${srcFileName}-bak"
+//    }
+//    //排除
+//    exclude {}
+//}
+/**
+ * 文件树进行遍历 filetree
+ */
+//把module_groovy目录下libs的问题件，拷贝到root project下的test目录中
+this.fileTree('libs') { FileTree fileTree ->
+    /**
+     * public interface FileVisitDetails extends FileTreeElement
+     */
+    fileTree.visit { FileVisitDetails fileVisitDetails ->
+        println "the file name is ${fileVisitDetails.file.name}"
+        copy {
+            from fileVisitDetails.file
+            into getRootDir().path+"/test/"
+        }
+    }
+
+}
