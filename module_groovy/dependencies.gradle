@@ -1,0 +1,35 @@
+/**
+ * The given closure is executed against this project's {@link ScriptHandler}
+ */
+buildscript { ScriptHandler scriptHandler  ->
+
+    //配置仓库地址
+    scriptHandler.repositories { RepositoryHandler repositoryHandler ->
+        repositoryHandler.google()
+        repositoryHandler.jcenter()
+        repositoryHandler.mavenCentral()
+        repositoryHandler.mavenLocal()
+
+        repositoryHandler.maven { MavenArtifactRepository mavenArtifactRepository ->
+            url("http://localhost:8081:/nexus/repositories/")
+            name("personal")
+            credentials {
+                username "admin"
+                password "123"
+            }
+        }
+
+    }
+
+    //配置gradle插件！！！的依赖地址
+    scriptHandler.dependencies { DependencyHandler dependencyHandler ->
+        classpath "com.android.tools.build:gradle:3.6.3"
+    }
+}
+
+
+task(name:"apkcopy") {
+    doLast {
+        //gradle的执行阶段去执行
+    }
+}

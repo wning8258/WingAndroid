@@ -1,10 +1,11 @@
 apply plugin: 'groovy'  //引入 groovy 插件，groovy 插件继承了 java 插件
-
+apply from : "dependencies.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation localGroovy()  //引入 Gradle 所带的 Groovy 库。
-}
 
+   // provided（）： 只在编译时有效，不会参与打包
+
+}
 /**
  *  getRootDir  getBuildDir  getProjectDir
  */
