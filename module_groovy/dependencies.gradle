@@ -26,10 +26,3 @@ buildscript { ScriptHandler scriptHandler  ->
         classpath "com.android.tools.build:gradle:3.6.3"
     }
 }
-
-
-task(name:"apkcopy") {
-    doLast {
-        //gradle的执行阶段去执行
-    }
-}

@@ -47,3 +47,29 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
+
+/**
+ *   ./gradlew apkcopy
+ */
+//拷贝apk到downloads目录
+task("apkcopy") {
+    //gradle的执行阶段去执行
+    doLast {
+        def sourcePath = this.buildDir.path + "/outputs/apk/"
+        def destPath = "/Users/gmu/Downloads/apkcopy"
+        /**
+         * cp [options] source dest
+         * -r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。
+         */
+        def command = "cp -r ${sourcePath} ${destPath}"
+        this.exec {
+            try {
+                executable "bash"
+                args "-c", command
+                println "the command is execute success"
+            } catch (GradleException e) {
+                println "the command is execute failed"
+            }
+        }
+    }
+}

@@ -48,16 +48,15 @@ def getContent(String path) {
  * 文件树进行遍历 filetree
  */
 //把module_groovy目录下libs的问题件，拷贝到root project下的test目录中
-this.fileTree('libs') { FileTree fileTree ->
-    /**
-     * public interface FileVisitDetails extends FileTreeElement
-     */
-    fileTree.visit { FileVisitDetails fileVisitDetails ->
-        println "the file name is ${fileVisitDetails.file.name}"
-        copy {
-            from fileVisitDetails.file
-            into getRootDir().path+"/test/"
-        }
-    }
-
-}
+//this.fileTree('libs') { FileTree fileTree ->
+//    /**
+//     * public interface FileVisitDetails extends FileTreeElement
+//     */
+//    fileTree.visit { FileVisitDetails fileVisitDetails ->
+//        println "the file name is ${fileVisitDetails.file.name}"
+//        copy {
+//            from fileVisitDetails.file
+//            into getRootDir().path+"/test/"
+//        }
+//    }
+//}
