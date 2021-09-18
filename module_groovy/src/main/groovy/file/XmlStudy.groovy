@@ -1,7 +1,5 @@
 package file
 
-import groovy.xml.XmlSlurper
-import groovy.xml.slurpersupport.GPathResult
 
 final String xml = '''
     <response version-api="2.0">

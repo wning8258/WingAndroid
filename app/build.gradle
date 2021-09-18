@@ -30,6 +30,11 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+
     viewBinding {
         enabled = true
     }
@@ -37,6 +42,7 @@ android {
 
 dependencies {
     implementation project(':module_asm')
+    implementation project(':module_groovy')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libAndroidAppcompat
@@ -45,7 +51,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }
 
 /**
@@ -73,3 +78,25 @@ task("apkcopy") {
         }
     }
 }
+
+
+//计算buid执行时长
+def startBuildTime, endBuildTime
+/**
+ * configure阶段结束后的监听
+ * //只监听当前工程的evaluate,监听不到其它工程的，即使是他的子工程
+ */
+this.afterEvaluate { Project project ->
+    def preBuildTask = project.tasks.getByName("preBuild")
+    preBuildTask.doFirst {
+        startBuildTime = System.currentTimeMillis()
+        println "the startBuildTime is $startBuildTime"
+    }
+    def buildTask = project.tasks.getByName("build")
+    buildTask.doLast {
+        endBuildTime = System.currentTimeMillis()
+        println "the endBuildTime is $endBuildTime"
+        println "the build time is ${endBuildTime - startBuildTime}"
+    }
+}
+

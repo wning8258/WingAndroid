@@ -1,8 +1,12 @@
 apply plugin: 'groovy'  //引入 groovy 插件，groovy 插件继承了 java 插件
+apply plugin: 'maven'
 apply from : "dependencies.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    //gradle sdk
+    compileOnly gradleApi()
+    //groovy sdk
+    compileOnly localGroovy()
    // provided（）： 只在编译时有效，不会参与打包
 
 }

@@ -1,4 +1,3 @@
-include ':module_gradle'
 if (this.hasProperty("isIncludeModuleGroovy")? isIncludeModuleGroovy.toBoolean():false) {
     include ':module_groovy'
 }
