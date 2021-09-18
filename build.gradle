@@ -1,5 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: this.file('version_config.gradle')
+//task depends相关
+apply from: "taskDepends.gradle"
 buildscript {
     repositories {
         google()
@@ -36,13 +38,15 @@ task clean(type: Delete) {
 /**
  * Gradle脚本的执行分为三个过程：
  *
- * 初始化
+ * 初始化 init
  * 分析有哪些module将要被构建，为每个module创建对应的 project实例。这个时候settings.gradle文件会被解析。
  *
- * 配置：处理所有的模块的 build 脚本，处理依赖，属性等。这个时候每个模块的build.gradle文件会被解析并配置，
+ * 配置： configure
+ * 处理所有的模块的 build 脚本，处理依赖，属性等。这个时候每个模块的build.gradle文件会被解析并配置，
  * 这个时候会构建整个task的链表（这里的链表仅仅指存在依赖关系的task的集合，不是数据结构的链表）。
  *
- * 执行：根据task链表来执行某一个特定的task，这个 task所依赖的其他task都将会被提前执行。
+ * 执行：run
+ * 根据task链表来执行某一个特定的task，这个 task所依赖的其他task都将会被提前执行。
  */
 /**
  * configure阶段开始前的监听
