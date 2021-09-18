@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: "tasks.gradle"
 //apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
 def mCompileSdkVersion = 29
 
@@ -79,24 +80,4 @@ task("apkcopy") {
     }
 }
 
-
-//计算buid执行时长
-def startBuildTime, endBuildTime
-/**
- * configure阶段结束后的监听
- * //只监听当前工程的evaluate,监听不到其它工程的，即使是他的子工程
- */
-this.afterEvaluate { Project project ->
-    def preBuildTask = project.tasks.getByName("preBuild")
-    preBuildTask.doFirst {
-        startBuildTime = System.currentTimeMillis()
-        println "the startBuildTime is $startBuildTime"
-    }
-    def buildTask = project.tasks.getByName("build")
-    buildTask.doLast {
-        endBuildTime = System.currentTimeMillis()
-        println "the endBuildTime is $endBuildTime"
-        println "the build time is ${endBuildTime - startBuildTime}"
-    }
-}
 

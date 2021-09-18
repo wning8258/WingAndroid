@@ -1,0 +1,48 @@
+/**
+ * group创建分组，可以在gradle分组里看到
+ */
+task helloTask(group: 'wn_test', description: "task study") {
+    //在配置阶段执行
+    println("i am hello task")
+    //在执行阶段执行
+    doFirst {
+        println "the hello task group is $group first "
+    }
+    doLast {
+        println "the hello task group is $group end"
+    }
+}
+
+//在执行阶段执行
+helloTask.doFirst {
+    println "the hello task description is $description"
+}
+
+//通过TaskContainer去创建task
+this.tasks.create("helloTask2") {
+    setGroup("wn_test")
+    setDescription("task study2")
+    //在配置阶段执行
+    println("i am hello task2")
+}
+
+//计算buid执行时长
+def startBuildTime, endBuildTime
+/**
+ * configure阶段结束后的监听
+ * //只监听当前工程的evaluate,监听不到其它工程的，即使是他的子工程
+ */
+this.afterEvaluate { Project project ->
+    def preBuildTask = project.tasks.getByName("preBuild")
+    preBuildTask.doFirst {
+        startBuildTime = System.currentTimeMillis()
+        println "the startBuildTime is $startBuildTime"
+    }
+    def buildTask = project.tasks.getByName("build")
+    buildTask.doLast {
+        endBuildTime = System.currentTimeMillis()
+        println "the endBuildTime is $endBuildTime"
+        println "the build time is ${endBuildTime - startBuildTime}"
+    }
+}
+
