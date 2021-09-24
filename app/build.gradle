@@ -40,7 +40,28 @@ android {
     viewBinding {
         enabled = true
     }
+
+    sourceSets {
+        main {
+            //修改jni libs的so文件存放位置到libs目录
+            jniLibs.srcDirs  = ["libs"]
+            //修改资源文件夹
+            res.srcDirs = ['src/main/res','src/main/res-ad','src/main/res-player']
+        }
+    }
+
 }
+/**
+ * 在外边修改也可以
+ */
+//this.android.sourceSets {
+//    main {
+//        //修改jni libs的so文件存放位置到libs目录
+//        jniLibs.srcDirs  = ["libs"]
+//        //修改资源文件夹
+//        res.srcDirs = ['src/main/res','src/main/res-ad','src/main/res-player']
+//    }
+//}
 
 dependencies {
     implementation project(':module_asm')
