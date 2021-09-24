@@ -7,16 +7,42 @@ import groovy.xml.MarkupBuilder
  * TaskInputs则有多种类型的
  */
 ext {
+    targetSdkVersion1 = 29
+    versionCode1 = "112"
+    versionName1 = "1.1.2"
+
     versionName = rootProject.ext.versionName1
     versionCode = rootProject.ext.versionCode1
     versionInfo = "App的第3个版本，上线了一些最基础核心的功能."
-    destFile = file('releases2.xml')
+    destFile = file('releases.xml')
     if (destFile != null && !destFile.exists()) {
         destFile.createNewFile()
     }
 }
 
-task writeTask {
+
+
+this.project.afterEvaluate { Project project ->
+    def buildTask = project.tasks.getByName("build")
+    if (buildTask == null) {
+        throw  GradleException("no task build")
+    }
+    /**
+     * Task A is `finalizedBy` task B是如果每次执行Task A,Task B 都会在其之后执行.
+     */
+    //buildTask完执行之后，执行writeTask
+    buildTask.finalizedBy(writeTask)
+    //> Task :app:build
+    //the endBuildTime is 1632474764106
+    //the build time is 1117
+    //
+    //> Task :app:writeTask
+    //writeTask execute start
+    //writeTask execute finish
+    //buildFinished
+}
+
+task writeTask(){
     //为task指定输入
     inputs.property('versionCode', this.versionCode)
     inputs.property('versionName', this.versionName)
@@ -25,6 +51,7 @@ task writeTask {
     outputs.file this.destFile
 
     doLast {
+        println "writeTask execute start"
 
         //getProperties返回Map<String, Object>
         def data = inputs.getProperties()
@@ -69,13 +96,13 @@ task writeTask {
 
             }
         }
-
+        println "writeTask execute finish"
     }
 }
 
 
 task readTask {
-
+    mustRunAfter writeTask
     inputs.file this.destFile
     doLast {
         def file = inputs.files.singleFile

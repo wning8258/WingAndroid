@@ -1,0 +1,33 @@
+/*
+./gradlew taskZ1 taskY1 taskX1
+> Task :taskX1
+this is taskX1
+
+> Task :taskY1
+this is taskY1
+
+> Task :taskZ1
+this is taskZ1
+buildFinished
+
+ */
+task taskX1 {
+    doLast {
+        println "this is taskX1"
+    }
+}
+
+task taskY1 {
+    mustRunAfter taskX1  //必须在taskX1之后执行
+    doLast {
+        println "this is taskY1"
+    }
+}
+
+
+task taskZ1 {
+    mustRunAfter taskY1 //必须在taskY1之后执行
+    doLast {
+        println "this is taskZ1"
+    }
+}

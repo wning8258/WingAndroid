@@ -1,3 +1,6 @@
+
 ext {
     targetSdkVersion1 = 29
+    versionCode1 = "112"
+    versionName1 = "1.1.2"
 }
