@@ -1,0 +1,100 @@
+import groovy.xml.MarkupBuilder
+/**
+ * 生成版本信息xml
+ *
+ * TaskInputs和TaskOutputs
+ * TaskOutputs只支持文件类型的输出和dir
+ * TaskInputs则有多种类型的
+ */
+ext {
+    versionName = rootProject.ext.versionName1
+    versionCode = rootProject.ext.versionCode1
+    versionInfo = "App的第3个版本，上线了一些最基础核心的功能."
+    destFile = file('releases2.xml')
+    if (destFile != null && !destFile.exists()) {
+        destFile.createNewFile()
+    }
+}
+
+task writeTask {
+    //为task指定输入
+    inputs.property('versionCode', this.versionCode)
+    inputs.property('versionName', this.versionName)
+    inputs.property('versionInfo', this.versionInfo)
+    //为task指定输出
+    outputs.file this.destFile
+
+    doLast {
+
+        //getProperties返回Map<String, Object>
+        def data = inputs.getProperties()
+        //getFiles返回FileCollection
+        def file = outputs.getFiles().getSingleFile()
+        //将map转化为实体对象
+        def versionMsg = new VersionMsg(data)
+        def sw = new StringWriter()
+        def xmlBuilder = new MarkupBuilder(sw)
+        if (file.text != null && file.text.size() <= 0) {
+            xmlBuilder.releases {
+                release {
+                    versionCode(versionMsg.versionCode)
+                    versionName(versionMsg.versionName)
+                    versionInfo(versionMsg.versionInfo)
+                }
+            }
+            file.withWriter { BufferedWriter writer ->
+                writer.append(sw.toString())
+
+            }
+        } else {
+            //已有根节点
+            xmlBuilder.release {
+                versionCode(versionMsg.versionCode)
+                versionName(versionMsg.versionName)
+                versionInfo(versionMsg.versionInfo)
+            }
+            //将生成的xml数据插入到根节点之前
+            def lines = file.readLines()
+            def length = lines.size() - 1
+            file.withWriter { writer ->
+                lines.eachWithIndex { String line, int index ->
+                    if (index != length) {
+                        writer.append(line + "\r\n")
+                    } else if (index == length ) {
+                        writer.append('\t\n' + sw.toString() + '\n')
+                        writer.append(line + "\r\n")
+
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+
+
+task readTask {
+
+    inputs.file this.destFile
+    doLast {
+        def file = inputs.files.singleFile
+        println file.text
+    }
+
+}
+
+
+task taskTest {
+    dependsOn(readTask,writeTask)
+    doLast {
+        println "输入输出任务结束"
+    }
+}
+
+
+class VersionMsg {
+    String versionCode
+    String versionName
+    String versionInfo
+}
