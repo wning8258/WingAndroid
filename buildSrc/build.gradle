@@ -1,3 +1,7 @@
+/**
+ * buildSrc默认就会作为一个plugin工程
+ */
+
 apply plugin: 'groovy'
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
