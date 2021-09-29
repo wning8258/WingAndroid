@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply from: "tasks.gradle"
-apply from: "taskInputOutput.gradle"
+apply from: "releaseInfo.gradle"
 //apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
+apply plugin: "com.wing.plugin"
 def mCompileSdkVersion = 29
 
 def libAndroidAppcompat = "androidx.appcompat:appcompat:1.2.0"

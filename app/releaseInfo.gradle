@@ -30,7 +30,7 @@ this.project.afterEvaluate { Project project ->
     /**
      * Task A is `finalizedBy` task B是如果每次执行Task A,Task B 都会在其之后执行.
      */
-    //buildTask完执行之后，执行writeTask
+    //buildTask完执行之后，执行writeTask！！！！！！！
     buildTask.finalizedBy(writeTask)
     //> Task :app:build
     //the endBuildTime is 1632474764106
