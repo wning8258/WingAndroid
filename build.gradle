@@ -1,10 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: this.file('version_config.gradle')
-
-//task depends相关
-apply from: "taskDepends.gradle"
-//apply from: "taskInputOutput.gradle"
-apply from: "taskMustRunAfter.gradle"
 buildscript {
     repositories {
         google()
