@@ -20,6 +20,47 @@ ReleaseInfo {
     fileName = "release-info.xml"
 }
 
+
+
+this.afterEvaluate { Project project ->
+    /**
+     * http://avatarqing.github.io/Gradle-Plugin-User-Guide-Chinese-Verision/advanced_build_customization/manipulation_taskstask.html
+     */
+    this.android.applicationVariants.all {variant ->
+        def name = variant.name
+        def baseName = variant.baseName
+        println "the name is $name, this baseName $baseName"
+        //the name is QQDebug, this baseName QQ-debug
+        //the name is QQRelease, this baseName QQ-release
+        //the name is BaiduDebug, this baseName Baidu-debug
+        //the name is BaiduRelease, this baseName Baidu-release
+        //the name is HUAWEIDebug, this baseName HUAWEI-debug
+        //the name is HUAWEIRelease, this baseName HUAWEI-release
+
+        def apkName ="app-${variant.baseName}-${variant.versionName}.apk"
+        /**
+         *  不能直接通过output.outputFile设置，会报错了
+         *  Cannot set the value of read-only property 'outputFile' for ApkVariantOutputImpl_Decorated
+         */
+//        def output = variant.outputs.first()
+//        output.outputFile = new File(output.outputFile.parent,apkName)
+//        println output.outputFile.name
+
+        variant.outputs.all {
+            outputFileName = apkName
+            println "outputFileName is ${outputFileName}"
+            //outputFileName is app-QQ-debug-1.0.apk
+            def task = variant.checkManifest
+            println "checkManifest name is ${task.name}"
+            //checkManifest name is checkQQDebugManifest
+            //checkManifest name is checkQQReleaseManifest
+        }
+    }
+}
+
+/**
+ * 所有可定义的属性，在BaseExtension中
+ */
 android {
     compileSdkVersion mCompileSdkVersion
     buildToolsVersion "29.0.3"
@@ -30,7 +71,7 @@ android {
         targetSdkVersion this.targetSdkVersion1
         versionCode 1
         versionName "1.0"
-
+        flavorDimensions "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -56,6 +97,18 @@ android {
             jniLibs.srcDirs  = ["libs"]
             //修改资源文件夹
             res.srcDirs = ['src/main/res','src/main/res-ad','src/main/res-player']
+        }
+    }
+
+    productFlavors {
+        Baidu {
+
+        }
+        QQ {
+
+        }
+        HUAWEI{
+
         }
     }
 
