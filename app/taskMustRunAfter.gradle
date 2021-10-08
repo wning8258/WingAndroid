@@ -24,7 +24,10 @@ task taskY1 {
     }
 }
 
-
+/**
+ * mustRunAfter只是控制多个task的执行顺序，并不是前后依赖，并且多个task同时调用，才能看出效果
+ * ./gradlew taskX1 taskY1 taskZ1
+ */
 task taskZ1 {
     mustRunAfter taskY1 //必须在taskY1之后执行
     doLast {

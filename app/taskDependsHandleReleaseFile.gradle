@@ -1,0 +1,39 @@
+/**
+ * 解析根目录的releases.xml中的每个节点，分别输出到build/generates/release目录
+ */
+task handleReleaseFile {
+    println "buildDir :" +this.buildDir
+    def srcFile = file('releases.xml')
+    def destDir = new File(this.buildDir.path+"/generates/release/")
+    doLast {
+        println "开始解析对应的xml文件。。。"
+        destDir.mkdirs()
+        def rootNode = new XmlParser().parse(srcFile)
+        rootNode.release.each { releaseNode ->
+            //解析每个release节点的内容
+            def name = releaseNode.versionName.text()
+            def code = releaseNode.versionCode.text()
+            def info = releaseNode.versionInfo.text()
+
+            println "${name} -> ${code} -> ${info}"
+            //创建文件并写入节点数据
+            def destFile = new File(destDir,"release-${name}.txt")
+            destFile.withWriter { writer ->
+                writer.write("${name} -> ${code} -> ${info}")
+            }
+        }
+    }
+}
+/**
+ * 验证handleReleaseFile是否执行成功
+ */
+task handleReleaseFileTest(dependsOn: handleReleaseFile) {
+    def destDir = fileTree(this.buildDir.path+"/generates/release/")
+    doLast {
+        println "handleReleaseFileTest 开始验证"
+        destDir.each {
+            println "the file name is :" + it
+        }
+        println "handleReleaseFileTest 验证完成"
+    }
+}
