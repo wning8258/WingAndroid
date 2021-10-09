@@ -7,8 +7,8 @@ class AsmPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        System.out.println("========================");
-        System.out.println("hello asm plugin!");
-        System.out.println("========================");
+        System.out.println("========================================================================");
+        System.out.println("hello asm plugin! + 0.0.4");
+        System.out.println("========================================================================");
     }
 }

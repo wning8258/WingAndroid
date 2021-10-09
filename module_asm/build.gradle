@@ -23,9 +23,9 @@ uploadArchives {
             //可以说最后一层目录，里面存的是aar的各种版本文件夹与库的配置。
             pom.artifactId = 'asm'
             //版本文件夹名称，用于存放aar的各种文件与配置
-            pom.version = "0.0.3"
+            pom.version = "0.0.4"
             //maven本地仓库的目录，
-            repository(url:uri('/Users/gmu/Android/workspace/maven'))
+            repository(url:uri(localRepo))
         }
     }
 }
