@@ -1,5 +1,6 @@
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'groovy'
+apply plugin: 'maven'
 
 
 publish {
@@ -13,6 +14,22 @@ publish {
 }
 
 
+//配置本地仓库
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //分组，也可以说是仓库目录。
+            pom.groupId = 'com.wing.android'
+            //可以说最后一层目录，里面存的是aar的各种版本文件夹与库的配置。
+            pom.artifactId = 'asm'
+            //版本文件夹名称，用于存放aar的各种文件与配置
+            pom.version = "0.0.3"
+            //maven本地仓库的目录，
+            repository(url:uri('/Users/gmu/Android/workspace/maven'))
+        }
+    }
+}
+
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -23,11 +40,3 @@ dependencies {
     //view binding的本质 https://juejin.cn/post/6844904106268557326
     //implementation group: 'androidx.databinding', name: 'databinding-compiler-common', version: '3.6.3'
 }
-
-this.getParentProject()
-
-def getParentProject() {
-    def name = this.getParent().name
-    println this.getProject().getName() +"  ,the parent project name is ${name}"
-}
-
