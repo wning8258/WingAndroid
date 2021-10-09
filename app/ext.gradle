@@ -1,4 +1,22 @@
-
-//println rootProject.properties.each { key, value ->
+/**
+ * ExtraPropertiesExtension
+ * https://docs.gradle.org/current/dsl/org.gradle.api.plugins.ExtraPropertiesExtension.html
+ */
+project.ext.text = "hello, i am a"
+println project.text
+//定义之后，就可以更新属性值了
+project.text ="hello, i am a new"
+println project.text
+//println project.properties.each { key, value ->
 //    println "properties key :" + key + ",value : " + value
 //}
+//properties
+println project.properties.containsKey("text")
+//has
+println project.ext.has("text")
+println project.hasProperty("text")
+
+project.ext.set("text", "hello, i am a new2")
+println project.text
+
+
