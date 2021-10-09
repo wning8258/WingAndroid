@@ -1,0 +1,4 @@
+
+//println rootProject.properties.each { key, value ->
+//    println "properties key :" + key + ",value : " + value
+//}

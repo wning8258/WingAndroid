@@ -1,3 +1,7 @@
+/**
+ * setting.gradle对应的是gradle中的Settings对象
+ * https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html
+ */
 if (this.hasProperty("isIncludeModuleGroovy")? isIncludeModuleGroovy.toBoolean():false) {
     include ':module_groovy'
 }

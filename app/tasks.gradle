@@ -46,3 +46,66 @@ this.afterEvaluate { Project project ->
     }
 }
 
+
+/**
+ * 这里动态的创建了 task0，task1，task2，task3
+ */
+4.times { counter ->
+    task "task$counter"  {
+        println "I'm task number $counter"
+    }
+}
+
+
+task A  {
+    doLast {
+        println 'Hello from A'
+    }
+}
+/**
+ * 可以使用 onlyIf() 方法来为一个任务加入判断条件。就和 Java 里的 if 语句一样，
+ * 任务只有在条件判断为真时才会执行。可以通过一个闭包来实现判断条件。
+ */
+A.onlyIf{!project.hasProperty('skipA')}
+/**
+ * 比如我们想根据不同的参数来进行不用的编译配置，可以在./gradlew中加入自定义参数。
+ * ./gradlew A -PskipA
+ * ./gradlew assembleDebug -Pcustom=true
+ */
+
+task B {
+    doLast {
+        println 'Hello from B'
+
+    }
+}
+/**
+ * 每一个任务都有一个已经激活的标记(enabled flag)，这个标记一般默认为真。
+ * 将它设置为假，那它的任何动作都不会被执行。
+ */
+//> Task :app:B SKIPPED
+B.enabled = false
+
+
+/**
+ * 我们在执行 Gradle 任务的时候，你可能会注意到 Gradle 会跳过一些任务，这些任务后面会标注 up-to-date。代表这个任务已经运行过了或者说是最新的状态，不再需要产生一次相同的输出。
+ Gradle 通过比较两次 build 之间输入和输出有没有变化来确定这个任务是否是最新的，如果从上一个执行之后这个任务的输入和输出没有发生改变这个任务就标记为 up-to-date，跳过这个任务。
+ 因此，要想跳过 up-to-date 的任务，我们必须为任务指定输入和输出。
+ 任务的输入属性是 TaskInputs 类型. 任务的输出属性是 TaskOutputs 类型.
+
+ 第一次执行 ./gradlew hello输出：
+ :app:hello
+ task hello doFirst
+ 然后进行第二次执行，输出：
+ :app:hello UP-TO-DATE
+
+ 跳过这个任务。可以看到，Gradle 能够检测出任务是否是 up-to-date 状态.
+ 如果我们修改一下 src/main/AndroidManifest.xml 文件，输入上面命令就会再次执行该任务。
+ */
+task hello {
+    inputs.file ("src/main/AndroidManifest.xml")
+    outputs.file ("build/test/AndroidManifestCopy.xml")
+    doFirst {
+        println 'task hello doFirst'
+    }
+}
