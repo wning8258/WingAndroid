@@ -13,6 +13,7 @@ import com.wing.android.databinding.ActivityMainBinding;
 import com.wing.android.messenger.MessengerActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.networkbench.agent.impl.NBSAppAgent;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

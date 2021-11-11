@@ -8,6 +8,8 @@ buildscript {
         maven {
             url(localRepo)
         }
+        //听云
+        maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.6.3"
@@ -17,6 +19,11 @@ buildscript {
         classpath 'com.wing.android:asm:0.0.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        //听云
+        classpath 'com.networkbench.newlens.agent.android:agent-gradle-plugin:2.14.10'
+
+
     }
 }
 
@@ -25,6 +32,10 @@ allprojects {
         google()
         jcenter()
         //maven {url "https://dl.bintray.com/wning8258/maven"}
+        //听云
+        maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
+
+
     }
     tasks.withType(Javadoc) {//解决lib中中文乱码问题
         options.addStringOption('Xdoclint:none', '-quiet')
