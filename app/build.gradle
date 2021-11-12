@@ -101,7 +101,7 @@ android {
         abortOnError false
     }
 
-
+    //使用view binding
     viewBinding {
         enabled = true
     }

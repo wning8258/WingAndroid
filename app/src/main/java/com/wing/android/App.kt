@@ -1,16 +1,12 @@
-package com.wing.android;
+package com.wing.android
 
-import android.app.Application;
+import android.app.Application
+import com.networkbench.agent.impl.NBSAppAgent
 
-import com.networkbench.agent.impl.NBSAppAgent;
-
-public class App extends Application {
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
+class App : Application() {
+    override fun onCreate() {
+        super.onCreate()
         NBSAppAgent.setLicenseKey("0f8afd35dcc74acd87c34adb64382409")
-                .withLocationServiceEnabled(true).start(this.getApplicationContext());//Appkey 请从官网获取
-
+                .withLocationServiceEnabled(true).start(this.applicationContext) //Appkey 请从官网获取
     }
 }
