@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "tasks.gradle"
 //task depends相关
 apply from: "taskDepends.gradle"
@@ -10,6 +11,11 @@ apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x
 apply plugin: "com.wing.plugin"
 //听云
 apply plugin: 'newlens'
+
+repositories {
+    mavenCentral()
+}
+
 
 
 def mCompileSdkVersion = 29
@@ -147,7 +153,8 @@ dependencies {
 
     implementation 'com.networkbench.newlens.agent.android:nbs.newlens.agent:2.14.10'
     implementation 'com.networkbench.newlens.agent.android2:nbs.newlens.nativecrash:2.0.0'
-
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
 }
