@@ -11,13 +11,13 @@ import android.view.View
 import com.wing.android.messenger.MessengerActivity
 import com.wing.android.aidl.BookManagerActivity
 import com.wing.android.bindpool.BinderPoolActivity
-import com.wing.android.databinding.ActivityMainBinding
+import com.wing.android.databinding.ActivityIpcRootLayoutBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private var mainBinding: ActivityMainBinding? = null
+    private var mainBinding: ActivityIpcRootLayoutBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        mainBinding = ActivityIpcRootLayoutBinding.inflate(layoutInflater)
         val view: View = mainBinding!!.root
         //view binding
         setContentView(view)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 

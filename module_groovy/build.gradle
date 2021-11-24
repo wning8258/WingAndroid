@@ -9,6 +9,8 @@ dependencies {
     compileOnly localGroovy()
    // provided（）： 只在编译时有效，不会参与打包
 
+    implementation otherDependencies.gson
+
 }
 /**
  *  getRootDir  getBuildDir  getProjectDir

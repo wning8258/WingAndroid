@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <merge
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@drawable/qiqi_room_video_loading_bg" />
+
+        <RelativeLayout
+            android:id="@+id/qiqi_room_video_loading_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp">
+
+
+            <!--灰尘-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/qiqi_room_video_loading_dust"
+                android:layout_alignBottom="@+id/qiqi_room_video_loading_bear"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_dust1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/qiqi_room_video_loading_dust1" />
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_dust2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/qiqi_room_video_loading_dust1"
+                    android:layout_alignBottom="@id/qiqi_room_video_loading_dust1"
+                    android:src="@drawable/qiqi_room_video_loading_dust2" />
+            </RelativeLayout>
+
+
+            <!--齐齐熊-->
+            <ImageView
+                android:id="@+id/qiqi_room_video_loading_bear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:layout_toRightOf="@id/qiqi_room_video_loading_dust"
+                android:layout_marginLeft="-10dp"
+                android:src="@drawable/qiqi_room_video_loading_bear6"
+                />
+
+            <!--熊阴影-->
+            <ImageView
+                android:id="@+id/qiqi_room_video_loading_shadow"
+                android:layout_below="@+id/qiqi_room_video_loading_bear"
+                android:layout_alignLeft="@+id/qiqi_room_video_loading_bear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:layout_marginTop="-10dp"
+                android:paddingLeft="5dp"
+                android:src="@drawable/qiqi_room_video_loading_shadow"/>
+
+
+            <!--文本-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/qiqi_room_video_loading_layout"
+                android:layout_toRightOf="@id/qiqi_room_video_loading_bear"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="25dp"
+                >
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/qiqi_room_video_loading_text" />
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_dot1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/qiqi_room_video_loading_dot"
+                    android:layout_alignBottom="@id/qiqi_room_video_loading_text"
+                    android:layout_toRightOf="@id/qiqi_room_video_loading_text"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="2dp"/>
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_dot2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/qiqi_room_video_loading_dot"
+                    android:layout_alignBottom="@id/qiqi_room_video_loading_dot1"
+                    android:layout_toRightOf="@id/qiqi_room_video_loading_dot1"
+                    />
+
+                <ImageView
+                    android:id="@+id/qiqi_room_video_loading_dot3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/qiqi_room_video_loading_dot"
+                    android:layout_alignBottom="@id/qiqi_room_video_loading_dot2"
+                    android:layout_toRightOf="@id/qiqi_room_video_loading_dot2"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/qiqi_room_video_loading_text_app"
+            android:layout_below="@id/qiqi_room_video_loading_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/qiqi_room_video_loading_text_app" />
+    </merge>

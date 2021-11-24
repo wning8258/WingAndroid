@@ -3,7 +3,7 @@ def students = [
         1:[number:'001', name:"zhangsan",score:55,sex:"male"],
         2:[number:"002", name:"lisi",score:62,sex:"female"],
         3:[number:"003", name:"wangwu",score:73,sex:"female"],
-        4:[number:"004", name:"zhaoliu",score:66,sex:"male"],
+        abc:[number:"004", name:"zhaoliu",score:66,sex:"male"],
 ]
 //遍历
 students.each {

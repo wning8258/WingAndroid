@@ -1,6 +1,37 @@
-
 ext {
     targetSdkVersion1 = 29
     versionCode1 = "115"
     versionName1 = "1.1.5"
+
+    android = [
+            AndroidBuildToolsVersion : "28.0.3",
+            AndridMinSdkVersion : 19,
+            AndroidTargetSdkVersion : 28,
+            AndroidCompileSdkVersion : 28,
+            applicationId : "com.wing.android",
+    ]
+
+    googlesupportVersion= '1.0.0-beta01'
+
+    googleDependencies = [
+            appcompat_v7: "androidx.appcompat:appcompat:1.1.0-alpha01",
+            design : "com.google.android.material:material:${googlesupportVersion}",
+            support_v4 : "androidx.legacy:legacy-support-v4:${googlesupportVersion}",
+            recyclerview_v7: "androidx.recyclerview:recyclerview:${googlesupportVersion}",
+            cardview_v7:"androidx.cardview:cardview:${googlesupportVersion}",
+            annotation:"androidx.annotation:annotation:${googlesupportVersion}",
+            multidex:"androidx.multidex:multidex:2.0.0"
+    ]
+
+    otherDependencies=[
+            umeng:"com.umeng.analytics:analytics:5.6.7",
+            nineoldandroids:"com.nineoldandroids:library:2.4.0",
+            rebound:"com.facebook.rebound:rebound:0.3.8",
+            okhttp:"com.squareup.okhttp3:okhttp:3.12.0",
+            fresco:"com.facebook.fresco:fresco:0.12.0",
+            eventbus:"org.greenrobot:eventbus:3.0.0",
+            gson:"com.google.code.gson:gson:2.8.8",
+            rxandroid: "io.reactivex:rxandroid:1.2.1",
+            rxjava: "io.reactivex:rxjava:1.1.6",
+    ]
 }

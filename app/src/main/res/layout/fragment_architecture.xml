@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+android:showDividers="middle"
+android:divider="@drawable/divider">
+
+    <Button
+        android:id="@+id/rxjava"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxJava2" />
+
+    <Button
+        android:id="@+id/mvp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="mvp" />
+
+    <Button
+        android:id="@+id/frescoProducer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="frescoProducer" />
+
+    <Button
+        android:id="@+id/dataBinding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DataBinding" />
+
+    <Button
+        android:id="@+id/aRouter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ARouter" />
+</LinearLayout>

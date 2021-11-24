@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/gift_surface_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.guagua.qiqi.gifteffect.BaseSurfaceView
+            android:id="@+id/gift_surface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- android:layout_below="@id/room_top_layout" -->
+        </com.guagua.qiqi.gifteffect.BaseSurfaceView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button android:id="@+id/btn1" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="1级特效"></Button>
+
+        <Button android:id="@+id/btn2" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="2级特效"></Button>
+        <Button android:id="@+id/btn3" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="3级特效"></Button>
+
+        <Button android:id="@+id/btn4" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="4级特效"></Button>
+        <Button android:id="@+id/btn5" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="5级特效"></Button>
+
+        <Button android:id="@+id/btn6" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="6级特效"></Button>
+        <Button android:id="@+id/btn7" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="7级特效"></Button>
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerHorizontal="true"
+    android:layout_width="match_parent"
+    android:layout_height="38dp">
+    <com.guagua.qiqi.widget.QiQiImageView
+        android:id="@+id/icon"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:placeholderImage="@drawable/qiqi_room_rebound_test"
+        app:failureImage="@drawable/qiqi_room_rebound_test"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
+

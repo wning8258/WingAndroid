@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/customView"
+        android:title="自定义view"
+        android:icon="@drawable/ic_launcher"
+    />
+    <item
+        android:id="@+id/anim"
+        android:title="动画"
+        android:icon="@drawable/ic_launcher"
+    />
+    <item
+        android:id="@+id/network"
+        android:title="网络"
+        android:icon="@drawable/ic_launcher"
+    />
+    <item
+        android:id="@+id/architecture"
+        android:title="架构"
+        android:icon="@drawable/ic_launcher"
+    />
+
+    <item
+        android:id="@+id/ipc"
+        android:title="进程间通信"
+        android:icon="@drawable/ic_launcher"
+        />
+</menu>

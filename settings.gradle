@@ -7,7 +7,7 @@ if (this.hasProperty("isIncludeModuleGroovy")? isIncludeModuleGroovy.toBoolean()
 }
 include ':module_asm'
 include ':app'
-
+include ':wingannotation'
 rootProject.name = "WingAndroid"
 
 println "初始化阶段开始。。。"

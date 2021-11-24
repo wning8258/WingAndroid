@@ -1,0 +1,18 @@
+package com.wning.demo;
+
+public class SingleInstance {
+    private static volatile SingleInstance instance;  //可见性
+
+    private SingleInstance(){}
+
+    public static SingleInstance getInstance(){
+        if(instance==null){
+            synchronized (SingleInstance.class){
+                if(instance==null){
+                    instance=new SingleInstance();
+                }
+            }
+        }
+        return instance;
+    }
+}

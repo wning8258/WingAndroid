@@ -37,6 +37,9 @@ allprojects {
         //听云
         maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
 
+        maven { url 'https://jitpack.io' }
+
+
 
     }
     tasks.withType(Javadoc) {//解决lib中中文乱码问题
