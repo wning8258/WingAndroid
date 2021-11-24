@@ -264,6 +264,14 @@ dependencies {
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/readme/0-BaseRecyclerViewAdapterHelper.md
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
 
+
+
+    /**
+     * https://juejin.cn/post/6857706913909719047
+     * Android10上”org.apache.commons.codec.binary.Hex ClassNotFoundException“解决及原因探究
+     */
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+
 }
 
 this.getParentProject()

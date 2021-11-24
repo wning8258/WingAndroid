@@ -2,6 +2,7 @@ package com.wning.demo.net.okhttp;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -64,6 +65,21 @@ public class OkHttpActivity extends BaseActivity<ActivityOkhttpBinding> implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            /**
+             * https://juejin.cn/post/6857706913909719047
+             * Android10上”org.apache.commons.codec.binary.Hex ClassNotFoundException“解决及原因探究
+             */
+            //经过验证，在10.0的手机上输出的是falied，6.0的手机上输出的是success。
+            Class.forName("org.apache.commons.codec.binary.Hex");
+            Log.e("HexTest","success");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            Log.e("HexTest","failed");
+        }
+
+
 
         btn1=findViewById(R.id.btn1);
         btn1.setOnClickListener(this);
