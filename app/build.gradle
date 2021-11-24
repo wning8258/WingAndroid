@@ -95,6 +95,9 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
+        multiDexEnabled true
+
     }
 
     buildTypes {

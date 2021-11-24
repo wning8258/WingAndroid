@@ -6,6 +6,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.Wing;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -26,7 +29,7 @@ import java.util.Map;
  * Created by Administrator on 2015/12/30.
  */
 @Wing
-public class MyApplication  extends Application{
+public class MyApplication  extends MultiDexApplication {
     //图片最大缓存大小15MB
     private static final int MAX_DISK_CACHE_SIZE = 15 * 1024 * 1024;
     private DisplayImageOptions defaultDisplayImageOptions;
@@ -40,6 +43,8 @@ public class MyApplication  extends Application{
     public void onCreate() {
         super.onCreate();
         mInstance=this;
+        //https://developer.android.com/studio/build/multidex
+        MultiDex.install(this);
 
         NBSAppAgent.setLicenseKey("0f8afd35dcc74acd87c34adb64382409")
                 .withLocationServiceEnabled(true).start(this); //Appkey 请从官网获取
