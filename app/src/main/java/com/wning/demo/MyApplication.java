@@ -3,8 +3,12 @@ package com.wning.demo;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Debug;
+import android.util.Log;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -12,6 +16,8 @@ import androidx.multidex.MultiDexApplication;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.Wing;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.github.moduth.blockcanary.BlockCanary;
+import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.guagua.modules.utils.LogUtils;
 import com.networkbench.agent.impl.NBSAppAgent;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
@@ -19,10 +25,12 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.wing.android.BuildConfig;
 import com.wing.android.R;
 import com.wning.demo.net.volley.data.RequestManager;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +50,7 @@ public class MyApplication  extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Debug.startMethodTracing("WingAndroid");
         mInstance=this;
         //https://developer.android.com/studio/build/multidex
         MultiDex.install(this);
@@ -69,6 +78,9 @@ public class MyApplication  extends MultiDexApplication {
 //        //factory.getImagePipeline();
 //
 //        Fresco.initialize(getApplicationContext(),imagePipelineConfig);
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+
+        Debug.stopMethodTracing();
     }
 
     private void initImageLoader() {
@@ -94,5 +106,66 @@ public class MyApplication  extends MultiDexApplication {
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSize))
                 .defaultDisplayImageOptions(defaultDisplayImageOptions).writeDebugLogs().build();
         ImageLoader.getInstance().init(configuration);
+    }
+
+    class AppBlockCanaryContext extends BlockCanaryContext {
+        private static final String TAG = "AppContext";
+
+        @Override
+        public String provideQualifier() {
+            String qualifier = "";
+            try {
+                PackageInfo info = MyApplication.getInstance().getPackageManager()
+                        .getPackageInfo(MyApplication.getInstance().getPackageName(), 0);
+                qualifier += info.versionCode + "_" + info.versionName + "_YYB";
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "provideQualifier exception", e);
+            }
+            return qualifier;
+        }
+
+        @Override
+        public String provideUid() {
+            return "87224330";
+        }
+
+        @Override
+        public String provideNetworkType() {
+            return "4G";
+        }
+
+        @Override
+        public int provideMonitorDuration() {
+            return 9999;
+        }
+
+        @Override
+        public int provideBlockThreshold() {
+            return 500;
+        }
+
+        @Override
+        public boolean displayNotification() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        public List<String> concernPackages() {
+            List<String> list = super.provideWhiteList();
+            list.add("com.example");
+            return list;
+        }
+
+        @Override
+        public List<String> provideWhiteList() {
+            List<String> list = super.provideWhiteList();
+            list.add("com.whitelist");
+            return list;
+        }
+
+        @Override
+        public boolean stopWhenDebugging() {
+            return true;
+        }
     }
 }
