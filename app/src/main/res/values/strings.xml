@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WingAndroid</string>
+    <string name="app_name">Wing</string>
     <string name="activity_simple_request_btn">Execute simple request</string>
     <string name="activity_json_request_btn">Execute json request</string>
     <string name="activity_params_request_btn">POST params</string>
