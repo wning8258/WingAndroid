@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Debug;
+import android.os.Trace;
+import android.os.Debug;
 import android.util.Log;
 
 import androidx.multidex.MultiDex;
@@ -50,7 +52,15 @@ public class MyApplication  extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Debug.startMethodTracing("WingAndroid");
+//        /**
+//         * 路径 Context.getExternalFilesDir(String).
+//         * buffer size 默认为8M
+//         */
+//         Debug.startMethodTracing("WingAndroid");
+
+        //traceview
+        //Trace.beginSection("AppOncreate");
+
         mInstance=this;
         //https://developer.android.com/studio/build/multidex
         MultiDex.install(this);
@@ -78,9 +88,11 @@ public class MyApplication  extends MultiDexApplication {
 //        //factory.getImagePipeline();
 //
 //        Fresco.initialize(getApplicationContext(),imagePipelineConfig);
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
-        Debug.stopMethodTracing();
+        //Debug.stopMethodTracing();
+
+        //Trace.endSection();
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
     }
 
     private void initImageLoader() {
