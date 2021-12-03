@@ -62,19 +62,15 @@ public class MyApplication  extends MultiDexApplication {
         //Trace.beginSection("AppOncreate");
 
         mInstance=this;
-        //https://developer.android.com/studio/build/multidex
-        MultiDex.install(this);
 
-        NBSAppAgent.setLicenseKey("0f8afd35dcc74acd87c34adb64382409")
-                .withLocationServiceEnabled(true).start(this); //Appkey 请从官网获取
+        initTingYun();
+
 
         initImageLoader();
 
-        if (LogUtils.ISDEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
-            ARouter.openLog();     // 打印日志
-            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-        }
-        ARouter.init(this); // 尽可能早，推荐在Application中初始化
+        initArouter();
+
+
         RequestManager.init(this);
         Fresco.initialize(getApplicationContext());
 
@@ -93,6 +89,12 @@ public class MyApplication  extends MultiDexApplication {
 
         //Trace.endSection();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+    }
+
+    private void initTingYun() {
+        NBSAppAgent.setLicenseKey("0f8afd35dcc74acd87c34adb64382409")
+                .withLocationServiceEnabled(true).start(this); //Appkey 请从官网获取
+
     }
 
     private void initImageLoader() {
@@ -118,6 +120,14 @@ public class MyApplication  extends MultiDexApplication {
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSize))
                 .defaultDisplayImageOptions(defaultDisplayImageOptions).writeDebugLogs().build();
         ImageLoader.getInstance().init(configuration);
+    }
+
+    private void  initArouter() {
+        if (LogUtils.ISDEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 
     class AppBlockCanaryContext extends BlockCanaryContext {

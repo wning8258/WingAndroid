@@ -11,6 +11,26 @@ apply from: "ext.gradle"
 apply plugin: "com.wing.plugin"
 //听云
 apply plugin: 'newlens'
+//aspectjx
+apply plugin: 'android-aspectjx'
+
+aspectjx {
+    exclude 'com.google.firebase', 'com.google.android'
+    exclude 'versions.9'
+    exclude 'com.squareup'
+    exclude 'leakcanary'
+    exclude 'blockcanary'
+    exclude 'com.taobao'
+    exclude 'com.ut'
+    exclude 'androidx'
+    exclude 'NBSAgent'
+    exclude 'okhttp'
+    exclude 'androidx', 'com.google', 'com.squareup', 'com.alipay', 'com.taobao',
+            'org.apache',
+            'org.jetbrains.kotlin',
+            "module-info", 'versions.9'
+
+}
 
 repositories {
     mavenCentral()
@@ -269,7 +289,7 @@ dependencies {
      * https://juejin.cn/post/6857706913909719047
      * Android10上”org.apache.commons.codec.binary.Hex ClassNotFoundException“解决及原因探究
      */
-    compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
@@ -277,8 +297,11 @@ dependencies {
 //    debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
 //    releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
 
-    debugCompile project(':blockcanary:blockcanary-android')
-    releaseCompile project(':blockcanary:blockcanary-android-no-op')
+    debugImplementation project(':blockcanary:blockcanary-android')
+    releaseImplementation project(':blockcanary:blockcanary-android-no-op')
+
+    //aspectj
+    implementation 'org.aspectj:aspectjrt:1.8'
 }
 
 this.getParentProject()
