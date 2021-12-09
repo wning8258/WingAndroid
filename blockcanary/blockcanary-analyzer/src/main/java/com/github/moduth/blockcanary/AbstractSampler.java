@@ -55,6 +55,10 @@ abstract class AbstractSampler {
         mShouldSample.set(true);
         //通过一个HandlerThread延时执行了mRunnable
         HandlerThreadFactory.getTimerThreadHandler().removeCallbacks(mRunnable);
+        /**
+         * provideBlockThreshold() * 0.8f
+         * 这个延迟 是阀值的80%（有可能dump出来的堆栈 不是真正block的堆栈）
+         */
         HandlerThreadFactory.getTimerThreadHandler().postDelayed(mRunnable,
                 BlockCanaryInternals.getInstance().getSampleDelay());
     }
