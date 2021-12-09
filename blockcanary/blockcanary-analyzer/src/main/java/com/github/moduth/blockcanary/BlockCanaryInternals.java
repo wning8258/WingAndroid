@@ -28,6 +28,7 @@ import java.util.List;
 
 public final class BlockCanaryInternals {
 
+    //真正的monitor监听器
     LooperMonitor monitor;
     StackSampler stackSampler;
     CpuSampler cpuSampler;
@@ -38,30 +39,35 @@ public final class BlockCanaryInternals {
     private List<BlockInterceptor> mInterceptorChain = new LinkedList<>();
 
     public BlockCanaryInternals() {
-
+        //初始化栈采集器
         stackSampler = new StackSampler(
                 Looper.getMainLooper().getThread(),
                 sContext.provideDumpInterval());
 
+        //初始化cpu采集器
         cpuSampler = new CpuSampler(sContext.provideDumpInterval());
 
+        //初始化LooperMonitor，并实现了onBlockEvent的回调，该回调会在触发阈值后被调用
         setMonitor(new LooperMonitor(new LooperMonitor.BlockListener() {
 
             @Override
             public void onBlockEvent(long realTimeStart, long realTimeEnd,
                                      long threadTimeStart, long threadTimeEnd) {
+                //根据开始及结束时间，从栈的map当中获取记录信息
                 // Get recent thread-stack entries and cpu usage
                 ArrayList<String> threadStackEntries = stackSampler
                         .getThreadStackEntries(realTimeStart, realTimeEnd);
                 if (!threadStackEntries.isEmpty()) {
+                    //构建 BlockInfo对象，设置相关的信息
                     BlockInfo blockInfo = BlockInfo.newInstance()
                             .setMainThreadTimeCost(realTimeStart, realTimeEnd, threadTimeStart, threadTimeEnd)
                             .setCpuBusyFlag(cpuSampler.isCpuBusy(realTimeStart, realTimeEnd))
                             .setRecentCpuRate(cpuSampler.getCpuRateInfo())
                             .setThreadStackEntries(threadStackEntries)
                             .flushString();
+                    //记录信息
                     LogWriter.save(blockInfo.toString());
-
+                    //遍历拦截器，通知
                     if (mInterceptorChain.size() != 0) {
                         for (BlockInterceptor interceptor : mInterceptorChain) {
                             interceptor.onBlock(getContext().provideContext(), blockInfo);

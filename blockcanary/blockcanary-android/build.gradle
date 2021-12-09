@@ -22,6 +22,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    compile project(':blockcanary-analyzer')
-    compile 'com.github.markzhai:blockcanary-analyzer:1.5.0'
+    compile project(':blockcanary:blockcanary-analyzer')
 }

@@ -101,6 +101,7 @@ class CpuSampler extends AbstractSampler {
 
     @Override
     protected void doSample() {
+        //主要通过获取/proc/stat文件 去获取cpu的信息
         BufferedReader cpuReader = null;
         BufferedReader pidReader = null;
 

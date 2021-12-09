@@ -39,12 +39,17 @@ public final class BlockCanary {
     private boolean mMonitorStarted = false;
 
     private BlockCanary() {
+        //初始化BlockCanaryInternals调度类
         BlockCanaryInternals.setContext(BlockCanaryContext.get());
         mBlockCanaryCore = BlockCanaryInternals.getInstance();
+
+        //为BlockCanaryInternals添加拦截器（责任链）BlockCanaryContext对BlockInterceptor是空实现
+        //这里设置的是用户通过install传进来的BlockCanaryContext
         mBlockCanaryCore.addBlockInterceptor(BlockCanaryContext.get());
         if (!BlockCanaryContext.get().displayNotification()) {
             return;
         }
+        //DisplayService只在开启通知栏消息的时候添加，当卡顿发生时将通过DisplayService发起通知栏消息
         mBlockCanaryCore.addBlockInterceptor(new DisplayService());
 
     }
@@ -57,8 +62,11 @@ public final class BlockCanary {
      * @return {@link BlockCanary}
      */
     public static BlockCanary install(Context context, BlockCanaryContext blockCanaryContext) {
+        //BlockCanaryContext.init会将保存应用的applicationContext和用户设置的配置参数
         BlockCanaryContext.init(context, blockCanaryContext);
+        //setEnabled将根据用户的通知栏消息配置开启
         setEnabled(context, DisplayActivity.class, BlockCanaryContext.get().displayNotification());
+        //get方法 返回BlockCanary的单例对象
         return get();
     }
 
@@ -68,6 +76,7 @@ public final class BlockCanary {
      * @return {@link BlockCanary} instance
      */
     public static BlockCanary get() {
+        //使用单例创建了一个BlockCanary对象
         if (sInstance == null) {
             synchronized (BlockCanary.class) {
                 if (sInstance == null) {
@@ -84,6 +93,7 @@ public final class BlockCanary {
     public void start() {
         if (!mMonitorStarted) {
             mMonitorStarted = true;
+            //把mBlockCanaryCore中的monitor设置MainLooper中进行监听
             Looper.getMainLooper().setMessageLogging(mBlockCanaryCore.monitor);
         }
     }

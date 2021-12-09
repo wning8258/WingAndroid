@@ -49,23 +49,31 @@ class LooperMonitor implements Printer {
     @Override
     public void println(String x) {
         if (mStopWhenDebugging && Debug.isDebuggerConnected()) {
+            //如果在debug模式，不执行监听
             return;
         }
-        if (!mPrintingStarted) {
+        if (!mPrintingStarted) {  //dispatchMesage前执行的println
+            //记录开始时间
             mStartTimestamp = System.currentTimeMillis();
+            // 返在当前线程运行的毫秒数。
             mStartThreadTimestamp = SystemClock.currentThreadTimeMillis();
             mPrintingStarted = true;
+            //开始采集栈及cpu信息
             startDump();
-        } else {
+        } else {  //dispatchMesage后执行的println
+            // 获取结束时间
             final long endTime = System.currentTimeMillis();
             mPrintingStarted = false;
+            //判断是否超过阈值
             if (isBlock(endTime)) {
+                //回调监听
                 notifyBlockEvent(endTime);
             }
             stopDump();
         }
     }
 
+    //判断是否超过阈值(默认3s)
     private boolean isBlock(long endTime) {
         return endTime - mStartTimestamp > mBlockThresholdMillis;
     }
@@ -82,6 +90,9 @@ class LooperMonitor implements Printer {
         });
     }
 
+    /**
+     * 当dispatchMessage前的println触发时，会执行dump的start方法，
+     */
     private void startDump() {
         if (null != BlockCanaryInternals.getInstance().stackSampler) {
             BlockCanaryInternals.getInstance().stackSampler.start();
@@ -92,6 +103,9 @@ class LooperMonitor implements Printer {
         }
     }
 
+    /**
+     * 当dispatchMessage后的println触发时，会执行dump的stop方法。
+     */
     private void stopDump() {
         if (null != BlockCanaryInternals.getInstance().stackSampler) {
             BlockCanaryInternals.getInstance().stackSampler.stop();

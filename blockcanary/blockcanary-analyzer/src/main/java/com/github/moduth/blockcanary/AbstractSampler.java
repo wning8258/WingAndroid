@@ -30,8 +30,10 @@ abstract class AbstractSampler {
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
+            //抽象方法
             doSample();
-
+            //继续执行采集
+            //300ms dump一次，可在context中设置
             if (mShouldSample.get()) {
                 HandlerThreadFactory.getTimerThreadHandler()
                         .postDelayed(mRunnable, mSampleInterval);
@@ -51,17 +53,19 @@ abstract class AbstractSampler {
             return;
         }
         mShouldSample.set(true);
-
+        //通过一个HandlerThread延时执行了mRunnable
         HandlerThreadFactory.getTimerThreadHandler().removeCallbacks(mRunnable);
         HandlerThreadFactory.getTimerThreadHandler().postDelayed(mRunnable,
                 BlockCanaryInternals.getInstance().getSampleDelay());
     }
 
     public void stop() {
+        //设置控制变量
         if (!mShouldSample.get()) {
             return;
         }
         mShouldSample.set(false);
+        //取消handler消息
         HandlerThreadFactory.getTimerThreadHandler().removeCallbacks(mRunnable);
     }
 

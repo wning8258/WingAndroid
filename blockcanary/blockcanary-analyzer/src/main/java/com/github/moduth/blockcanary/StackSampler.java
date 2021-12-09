@@ -58,6 +58,7 @@ class StackSampler extends AbstractSampler {
 
     @Override
     protected void doSample() {
+        //通过mCurrentThread.getStackTrace()获取StackTraceElement，加入到StringBuilder
         StringBuilder stringBuilder = new StringBuilder();
 
         for (StackTraceElement stackTraceElement : mCurrentThread.getStackTrace()) {
@@ -67,9 +68,11 @@ class StackSampler extends AbstractSampler {
         }
 
         synchronized (sStackMap) {
+            //Lru算法，控制LinkHashMap的长度
             if (sStackMap.size() == mMaxEntryCount && mMaxEntryCount > 0) {
                 sStackMap.remove(sStackMap.keySet().iterator().next());
             }
+            //加入到map中
             sStackMap.put(System.currentTimeMillis(), stringBuilder.toString());
         }
     }
