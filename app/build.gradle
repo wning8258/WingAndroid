@@ -12,25 +12,26 @@ apply plugin: "com.wing.plugin"
 //听云
 apply plugin: 'newlens'
 //aspectjx
-apply plugin: 'android-aspectjx'
-
-aspectjx {
-    exclude 'com.google.firebase', 'com.google.android'
-    exclude 'versions.9'
-    exclude 'com.squareup'
-    exclude 'leakcanary'
-    exclude 'blockcanary'
-    exclude 'com.taobao'
-    exclude 'com.ut'
-    exclude 'androidx'
-    exclude 'NBSAgent'
-    exclude 'okhttp'
-    exclude 'androidx', 'com.google', 'com.squareup', 'com.alipay', 'com.taobao',
-            'org.apache',
-            'org.jetbrains.kotlin',
-            "module-info", 'versions.9'
-
-}
+//apply plugin: 'android-aspectjx'
+//
+//aspectjx {
+//    enabled false
+//    exclude 'com.google.firebase', 'com.google.android'
+//    exclude 'versions.9'
+//    exclude 'com.squareup'
+//    exclude 'leakcanary'
+//    exclude 'blockcanary'
+//    exclude 'com.taobao'
+//    exclude 'com.ut'
+//    exclude 'androidx'
+//    exclude 'NBSAgent'
+//    exclude 'okhttp'
+//    exclude 'androidx', 'com.google', 'com.squareup', 'com.alipay', 'com.taobao',
+//            'org.apache',
+//            'org.jetbrains.kotlin',
+//            "module-info", 'versions.9'
+//
+//}
 
 repositories {
     mavenCentral()
@@ -301,7 +302,7 @@ dependencies {
     releaseImplementation project(':blockcanary:blockcanary-android-no-op')
 
     //aspectj
-    implementation 'org.aspectj:aspectjrt:1.8'
+//    implementation 'org.aspectj:aspectjrt:1.8'
 }
 
 this.getParentProject()
