@@ -5,15 +5,15 @@ import java.util.Arrays;
 public class 排序 {
     public static void main(String[] args){
 
-        int a[]={6,4,8,7,1,5,3,2};
-//        int a[]={6,1,2,7,9};
+//        int a[]={6,4,8,7,1,5,3,2};
+        int a[]={6,1,2,7,9};
        // int b[]={1,2,3,4,5,6,7,8};
         int[] tmp = new int[a.length];    //新建一个临时数组存放
 
         排序 sort=new 排序();
         //sort.mergeSort(a,0,a.length-1,tmp);
-         sort.bubbleSort(a);
-       //sort.quickSort(a,0,a.length-1);
+//         sort.bubbleSort(a);
+       sort.quickSort(a,0,a.length-1);
         //sort.choiceSort(a);
 
         //System.out.println("result :"+ Arrays.toString(a));
@@ -133,12 +133,15 @@ public class 排序 {
         j=right;
 
         while(i!=j){
-            while(a[i]<=temp&&i<j){  //找大于temp的index
-                i++;
-            }
+            //必须从右侧开始
             while(a[j]>=temp&&i<j){  //找小于temp的index
                 j--;
             }
+
+            while(a[i]<=temp&&i<j){  //找大于temp的index
+                i++;
+            }
+
 
             if(i<j){  //a[i]+a[j]交换位置
                 t=a[i];
