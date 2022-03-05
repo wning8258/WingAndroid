@@ -7,7 +7,8 @@ apply from: "taskDependsHandleReleaseFile.gradle"
 apply from: "taskMustRunAfter.gradle"
 apply from: "ext.gradle"
 //apply from: "releaseInfo.gradle"
-//apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
+//自己写的插件
+apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
 apply plugin: "com.wing.plugin"
 //听云
 apply plugin: 'newlens'
@@ -55,7 +56,10 @@ ReleaseInfo {
     versionInfo = "第4个版本，使用releaseInfo 自定义extension"
     fileName = "release-info.xml"
 }
-
+//自己写的extension,给name重新赋值
+hello {
+   name "i am wning!!!!!!!!!!!!!!!!"
+}
 
 
 this.afterEvaluate { Project project ->

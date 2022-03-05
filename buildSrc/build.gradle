@@ -1,12 +1,12 @@
 /**
- * buildSrc默认就会作为一个plugin工程
+ * buildSrc默认就会作为一个plugin工程，执行在setting.gradle之后,app之前
  */
-
 apply plugin: 'groovy'
+
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     //gradle sdk
-    compileOnly gradleApi()
+    implementation gradleApi()
     //groovy sdk
-    compileOnly localGroovy()
+    implementation localGroovy()
 }
+
