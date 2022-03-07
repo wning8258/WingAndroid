@@ -1,4 +1,6 @@
 package com.wing.buildsrc.plugin
+
+import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -29,5 +31,17 @@ class GradleStudy implements Plugin<Project>{
             buildTask.finalizedBy(releaseInfoTask)
         }
 
+
+
+        //
+        def extension = project.extensions.create("wing", WingExtension)
+
+        project.afterEvaluate {
+            println "Hello ${extension.name}"
+        }
+
+        def wingTransform = new WingTransform()
+        def baseExtension = project.extensions.getByType(BaseExtension.class)
+        baseExtension.registerTransform(wingTransform)
     }
 }
