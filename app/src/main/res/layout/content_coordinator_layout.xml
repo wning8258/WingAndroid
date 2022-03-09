@@ -9,4 +9,14 @@
     tools:context="com.wning.demo.customview.activity.CoordinatorLayoutActivity"
     tools:showIn="@layout/activity_coordinator_layout">
 
+
+    <com.wning.demo.customview.CanvasView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
