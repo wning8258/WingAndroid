@@ -8,7 +8,7 @@ apply from: "taskMustRunAfter.gradle"
 apply from: "ext.gradle"
 //apply from: "releaseInfo.gradle"
 //自己写的插件
-apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
+//apply plugin: 'com.wing.android.gradle'  //增加自己实现的插件，名字x为插件module META_INF/gradle-plugins/下的x.properties
 apply plugin: "com.wing.plugin"
 //听云
 apply plugin: 'newlens'
@@ -57,9 +57,9 @@ ReleaseInfo {
     fileName = "release-info.xml"
 }
 //自己写的extension,给name重新赋值
-hello {
-   name "i am wning!!!!!!!!!!!!!!!!"
-}
+//hello {
+//   name "i am wning!!!!!!!!!!!!!!!!"
+//}
 
 
 this.afterEvaluate { Project project ->
@@ -148,6 +148,7 @@ android {
     useLibrary 'org.apache.http.legacy'  //6.0以上使用httpclient
 
 
+
     sourceSets {
         main {
             //修改jni libs的so文件存放位置到libs目录
@@ -191,6 +192,9 @@ android {
 
 dependencies {
     implementation project(':module_groovy')
+    implementation project(':module_volley')
+    implementation project(':wingannotation') //编译时注解
+    annotationProcessor project(':wingannotation')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libAndroidAppcompat
@@ -211,8 +215,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 
 
-    implementation project(':wingannotation') //编译时注解
-    annotationProcessor project(':wingannotation')
+
 
     implementation 'com.android.support:multidex:1.0.1'
 
@@ -290,11 +293,7 @@ dependencies {
 
 
 
-    /**
-     * https://juejin.cn/post/6857706913909719047
-     * Android10上”org.apache.commons.codec.binary.Hex ClassNotFoundException“解决及原因探究
-     */
-    implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
+
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 

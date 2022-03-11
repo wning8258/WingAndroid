@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.library'
+}
+
+
+
+def ext = rootProject.ext
+android {
+    compileSdkVersion ext.android.AndroidCompileSdkVersion
+    buildToolsVersion ext.android.AndroidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion ext.android.AndridMinSdkVersion
+        targetSdkVersion ext.android.AndroidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    useLibrary 'org.apache.http.legacy'  //6.0以上使用httpclient
+
+}
+
+dependencies {
+
+    /**
+     * https://juejin.cn/post/6857706913909719047
+     * Android10上”org.apache.commons.codec.binary.Hex ClassNotFoundException“解决及原因探究
+     */
+    api group: 'commons-codec', name: 'commons-codec', version: '1.14'
+}

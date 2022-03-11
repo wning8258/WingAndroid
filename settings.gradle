@@ -11,6 +11,8 @@ include ':wingannotation'
 include ':blockcanary:blockcanary-analyzer'
 include ':blockcanary:blockcanary-android'
 include ':blockcanary:blockcanary-android-no-op'
+include ':module_volley'
+
 rootProject.name = "WingAndroid"
 
 println "初始化阶段开始。。。"
