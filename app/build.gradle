@@ -160,12 +160,12 @@ android {
         Baidu {
 
         }
-        QQ {
-
-        }
-        HUAWEI{
-
-        }
+//        QQ {
+//
+//        }
+//        HUAWEI{
+//
+//        }
     }
     compileOptions {
         sourceCompatibility 1.8
