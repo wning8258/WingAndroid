@@ -21,7 +21,6 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.guagua.modules.utils.LogUtils;
-import com.networkbench.agent.impl.NBSAppAgent;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -63,7 +62,6 @@ public class MyApplication  extends MultiDexApplication {
 
         mInstance=this;
 
-        initTingYun();
 
 
         initImageLoader();
@@ -91,11 +89,6 @@ public class MyApplication  extends MultiDexApplication {
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
     }
 
-    private void initTingYun() {
-        NBSAppAgent.setLicenseKey("0f8afd35dcc74acd87c34adb64382409")
-                .withLocationServiceEnabled(true).start(this); //Appkey 请从官网获取
-
-    }
 
     private void initImageLoader() {
         int memoryCacheSize;

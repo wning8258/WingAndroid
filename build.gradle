@@ -10,8 +10,6 @@ buildscript {
             url(localRepo)
         }
         mavenLocal()
-        //听云
-        maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.6.3"
@@ -21,8 +19,6 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
-        //听云
-        classpath 'com.networkbench.newlens.agent.android:agent-gradle-plugin:2.14.10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         //aspectjx
@@ -37,8 +33,6 @@ allprojects {
         jcenter()
         mavenCentral()
         //maven {url "https://dl.bintray.com/wning8258/maven"}
-        //听云
-        maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
 
         maven { url 'https://jitpack.io' }
 
