@@ -10,6 +10,9 @@ buildscript {
             url(localRepo)
         }
         mavenLocal()
+
+        maven { url 'https://repo1.maven.org/maven2/' }
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.6.3"
@@ -35,6 +38,8 @@ allprojects {
         //maven {url "https://dl.bintray.com/wning8258/maven"}
 
         maven { url 'https://jitpack.io' }
+
+        maven { url 'https://repo1.maven.org/maven2/' }
 
 
 
