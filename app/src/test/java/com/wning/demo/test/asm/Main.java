@@ -6,6 +6,7 @@ public class Main {
 
     }
 
+    @TestAnnotation
     public static void main(String[] args) {
         System.out.println("main");
     }

@@ -11,8 +11,13 @@ import java.io.IOException;
 public class AsmTest {
     public static void main(String[] args) {
         try {
-            String path = "/Users/freelf/Android/workspace/WingDemo/app/src/test/java/com/wning/demo/test/asm/";
-            String outPath = "/Users/freelf/Android/workspace/WingDemo/app/src/test/java2/com/wning/demo/test/asm/";
+
+            //工程根目录
+            String projectPath = System.getProperty("user.dir");
+
+            String path = projectPath + "/app/src/test/java/com/wning/demo/test/asm/";
+            String outPath = projectPath + "/app/src/test/java/com/wning/demo/test/asm/";
+
             /**
              * 1、准备待分析的class
              */
@@ -32,7 +37,7 @@ public class AsmTest {
             byte[] newClassBytes = cw.toByteArray();
             File file = new File(outPath);
             file.mkdirs();
-            FileOutputStream fos = new FileOutputStream(outPath + "Main.class");
+            FileOutputStream fos = new FileOutputStream(outPath + "Main2.class");
             fos.write(newClassBytes);
             fos.close();
         } catch (IOException e) {

@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.CLASS)
-public @interface AsmTestAnnotation {
+public @interface TestAnnotation {
 }

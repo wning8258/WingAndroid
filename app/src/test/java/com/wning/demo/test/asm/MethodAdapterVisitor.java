@@ -3,7 +3,6 @@ package com.wning.demo.test.asm;
 import org.objectweb.asm.MethodVisitor;
 
 import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
 import org.objectweb.asm.commons.Method;
@@ -25,7 +24,7 @@ public  class  MethodAdapterVisitor  extends  AdviceAdapter {
      */
     @Override
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        if (Type.getDescriptor(AsmTestAnnotation.class).equals(descriptor)) {
+        if (Type.getDescriptor(TestAnnotation.class).equals(descriptor)) {
             System.out.println(descriptor);
             inject = true;
         }
