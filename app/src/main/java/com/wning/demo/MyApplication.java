@@ -26,6 +26,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.umeng.commonsdk.UMConfigure;
 import com.wing.android.BuildConfig;
 import com.wing.android.R;
 import com.wning.demo.net.volley.data.RequestManager;
@@ -87,6 +88,14 @@ public class MyApplication  extends MultiDexApplication {
 
         //Trace.endSection();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+
+        /**
+         * 注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调
+         * 用初始化接口（如需要使用AndroidManifest.xml中配置好的appkey和channel值，
+         * UMConfigure.init调用中appkey和channel参数请置为null）。
+         */
+        UMConfigure.init(this,"622b391e317aa877609205d0","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+        UMConfigure.setLogEnabled(BuildConfig.DEBUG);
     }
 
 
