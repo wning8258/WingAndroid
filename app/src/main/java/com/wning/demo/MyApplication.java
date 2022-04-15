@@ -94,8 +94,8 @@ public class MyApplication  extends MultiDexApplication {
          * 用初始化接口（如需要使用AndroidManifest.xml中配置好的appkey和channel值，
          * UMConfigure.init调用中appkey和channel参数请置为null）。
          */
-        UMConfigure.init(this,"622b391e317aa877609205d0","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
         UMConfigure.setLogEnabled(BuildConfig.DEBUG);
+        UMConfigure.init(this,"622b391e317aa877609205d0","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
     }
 
 
