@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 /**
  * 二分法求一个数的平方根

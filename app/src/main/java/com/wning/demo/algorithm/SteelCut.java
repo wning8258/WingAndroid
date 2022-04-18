@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 public class SteelCut {
     public static void main(String[] args){

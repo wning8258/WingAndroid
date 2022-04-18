@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.kotlin
+package com.wning.demo.kotlin
 
 import android.content.Context
 import android.util.AttributeSet

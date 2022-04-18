@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 public class SingleInstance {
 //    private static volatile SingleInstance instance;  //可见性

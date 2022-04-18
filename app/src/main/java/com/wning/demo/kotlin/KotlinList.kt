@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.kotlin
+package com.wning.demo.kotlin
 
 class KotlinList {
     val numbers = mutableListOf<Int>(1,2,3,4)

@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 class MyThread extends Thread{
 

@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.kotlin
+package com.wning.demo.kotlin
 
 /**
  * 定义一个class KotlinTest（含有两个成员变量，int型的liveType，可空String的roomName）

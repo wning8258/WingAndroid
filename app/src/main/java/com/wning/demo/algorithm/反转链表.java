@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 /**
  * https://leetcode-cn.com/problems/reverse-linked-list/

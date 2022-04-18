@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 import java.util.Random;
 import java.util.concurrent.Callable;

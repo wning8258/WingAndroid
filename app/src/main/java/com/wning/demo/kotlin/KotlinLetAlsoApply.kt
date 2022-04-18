@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.kotlin
+package com.wning.demo.kotlin
 
 /**
  * https://blog.csdn.net/u013064109/article/details/78786646

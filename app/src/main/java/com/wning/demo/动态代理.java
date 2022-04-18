@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

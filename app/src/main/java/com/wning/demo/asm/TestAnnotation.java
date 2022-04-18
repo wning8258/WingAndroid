@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.asm;
+package com.wning.demo.asm;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

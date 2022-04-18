@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 /**
  * 你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。

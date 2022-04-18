@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;

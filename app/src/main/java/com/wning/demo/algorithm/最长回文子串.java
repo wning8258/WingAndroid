@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 public class 最长回文子串 {
     public static void main(String[] args) {

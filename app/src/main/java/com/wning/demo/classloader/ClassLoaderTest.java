@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.classloader;
+package com.wning.demo.classloader;
 
 public class ClassLoaderTest {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 public class NewUserModel implements IBaseUserModel {
     @Override

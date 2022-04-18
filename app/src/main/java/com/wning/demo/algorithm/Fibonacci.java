@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 /**
  * Fibonacci (n) = 1;   n = 0

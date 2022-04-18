@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.algorithm;
+package com.wning.demo.algorithm;
 
 /**
  * https://www.cnblogs.com/zhanghongfeng/p/11771758.html

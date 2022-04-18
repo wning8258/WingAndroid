@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

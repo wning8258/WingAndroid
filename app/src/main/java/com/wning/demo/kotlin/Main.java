@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.kotlin;
+package com.wning.demo.kotlin;
 
 public class Main {
     public static void main(String[] args) {

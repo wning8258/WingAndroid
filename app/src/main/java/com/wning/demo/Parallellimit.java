@@ -1,4 +1,4 @@
-package com.wning.demo.test.test;
+package com.wning.demo;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

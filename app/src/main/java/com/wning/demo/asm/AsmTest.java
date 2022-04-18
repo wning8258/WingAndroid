@@ -1,4 +1,4 @@
-package com.wning.demo.test.test.asm;
+package com.wning.demo.asm;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -15,8 +15,8 @@ public class AsmTest {
             //工程根目录
             String projectPath = System.getProperty("user.dir");
 
-            String path = projectPath + "/app/src/test/java/com/wning/demo/test/asm/";
-            String outPath = projectPath + "/app/src/test/java/com/wning/demo/test/asm/";
+            String path = projectPath + "/app/src/main/java/com/wning/demo/asm/";
+            String outPath = path;
 
             /**
              * 1、准备待分析的class
