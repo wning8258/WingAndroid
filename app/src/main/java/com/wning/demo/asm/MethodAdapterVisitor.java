@@ -1,5 +1,7 @@
 package com.wning.demo.asm;
 
+import com.wning.demo.asm.TestAnnotation;
+
 import org.objectweb.asm.MethodVisitor;
 
 import org.objectweb.asm.AnnotationVisitor;
@@ -36,6 +38,8 @@ public  class  MethodAdapterVisitor  extends  AdviceAdapter {
     protected  void onMethodEnter() {
         super.onMethodEnter();
         if (inject) {
+            //    INVOKESTATIC java/lang/System.currentTimeMillis ()J
+            //    LSTORE 1
             //执行完了怎么办？记录到本地变量中
             invokeStatic(Type.getType("Ljava/lang/System;"),
                     new  Method("currentTimeMillis", "()J"));
@@ -44,15 +48,34 @@ public  class  MethodAdapterVisitor  extends  AdviceAdapter {
             //记录 方法执行结果给创建的本地变量
             storeLocal(start);
         }
+
     }
     @Override
     protected  void onMethodExit(int opcode) {
         super.onMethodExit(opcode);
         if (inject){
+            //    INVOKESTATIC java/lang/System.currentTimeMillis ()J
+            //    LSTORE 3
             invokeStatic(Type.getType("Ljava/lang/System;"),
                     new  Method("currentTimeMillis", "()J"));
             int end = newLocal(Type.LONG_TYPE);
             storeLocal(end);
+
+            //    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+            //    NEW java/lang/StringBuilder
+            //    DUP
+            //    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+            //    LDC "execute time = "
+            //    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+            //    LLOAD 3
+            //    LLOAD 1
+            //    LSUB
+            //    INVOKEVIRTUAL java/lang/StringBuilder.append (J)Ljava/lang/StringBuilder;
+            //    LDC " ms"
+            //    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+            //    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+            //    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+
             getStatic(Type.getType("Ljava/lang/System;"),"out",Type.getType("Ljava/io" +
                     "/PrintStream;"));
             //分配内存 并dup压入栈顶让下面的INVOKESPECIAL 知道执行谁的构造方法创建StringBuilder
