@@ -5,7 +5,7 @@ println(name.class)  //class java.lang.String
 //单引号+斜线转义
 def name2 = 'a single \'\' string'  //转义用斜线\
 println("name2 ${name2}")  //name2 a single '' string
-//3引号
+//3引号(支持格式)
 def name3 ='''three string '''
 def name4 = '''123
 456
