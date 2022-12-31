@@ -17,7 +17,7 @@ public class 寻找第k大的数 {
     public static void main(String[] args) {
         寻找第k大的数 instance =new 寻找第k大的数();
         int a[]= {6,4,8,7,1,5,3,2};
-        int kth = instance.findKth(a, 0, a.length - 1, 3);
+        int kth = instance.findKth(a, 0, a.length - 1, 6);
         System.out.println(kth);
     }
 
@@ -33,10 +33,13 @@ public class 寻找第k大的数 {
         int part = partation(a, low, high);
         System.out.println("part :" + part + "," + Arrays.toString(a));
         if(k == part - low + 1) {  //k正好是要找的，比如k =3 ,part = 2 (从0开始索引的，所以后边需要+1)low =0
+            System.out.println("k就是要找的");
             return a[part];
         } else if(k > part - low + 1) {  //l在右边(k索引比较大，value比较小)
+            System.out.println("k在右边");
             return findKth(a, part + 1, high, k - part + low -1);
         } else {  //k在左边(k索引比较小，value比较大)
+            System.out.println("k在左边");
             return findKth(a, low, part -1, k);
         }
     }
