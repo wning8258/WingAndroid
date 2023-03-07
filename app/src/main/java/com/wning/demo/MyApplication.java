@@ -38,7 +38,6 @@ import java.util.Map;
 /**
  * Created by Administrator on 2015/12/30.
  */
-@Wing
 public class MyApplication  extends MultiDexApplication {
     //图片最大缓存大小15MB
     private static final int MAX_DISK_CACHE_SIZE = 15 * 1024 * 1024;

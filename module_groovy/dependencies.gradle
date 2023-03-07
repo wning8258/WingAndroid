@@ -23,6 +23,6 @@ buildscript { ScriptHandler scriptHandler  ->
 
     //配置gradle插件！！！的依赖地址
     scriptHandler.dependencies { DependencyHandler dependencyHandler ->
-        classpath "com.android.tools.build:gradle:3.6.3"
+        classpath "com.android.tools.build:gradle:4.0.0"
     }
 }

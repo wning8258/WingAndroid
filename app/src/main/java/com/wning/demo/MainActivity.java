@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-@Wing
+
 public class MainActivity extends AppCompatActivity {
 
 
 
-    ExpandableListView listView;
+    @Wing(R.id.list) ExpandableListView listView;
 
     private ExpandableAdapter adapter;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ipc_root_layout);
 
-        listView=findViewById(R.id.list);
+//        listView=findViewById(R.id.list);
         toolbar=findViewById(R.id.toolbar);
 
         initData();

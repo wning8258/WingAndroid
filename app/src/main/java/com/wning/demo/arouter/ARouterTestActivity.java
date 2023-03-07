@@ -2,13 +2,11 @@ package com.wning.demo.arouter;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.wning.demo.BaseActivity;
-import com.wing.android.R;
 import com.wing.android.databinding.ActivityArouterBinding;
-import com.wing.android.databinding.ActivityLooperBinding;
+import com.wning.demo.BaseActivity;
 
-@Route(path = "/test/activity1")
-public class ARouterActivity extends BaseActivity<ActivityArouterBinding>{
+@Route(path = "/test/activity2")
+public class ARouterTestActivity extends BaseActivity<ActivityArouterBinding>{
 
     @Autowired
     String key;

@@ -1,5 +1,10 @@
 package com.wning.demo;
 
+
+import com.wning.demo.zzz.ProxyGenerator;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -23,7 +28,20 @@ public class 动态代理2 {
         People proxy = (People) Proxy.newProxyInstance(people.getClass().getClassLoader(), people.getClass().getInterfaces(), handler);
         //System.out.println(proxy.toString());
         System.out.println(proxy.work());
+
+
+        try {
+            String name = People.class.getName()+"$Proxy0";
+            //生成代理指定接口的Class数据
+            byte[] bytes = ProxyGenerator.generateProxyClass(name, new Class[]{People.class});
+            FileOutputStream fos = new FileOutputStream( name + ".class");
+            fos.write(bytes);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }
 
 interface People {

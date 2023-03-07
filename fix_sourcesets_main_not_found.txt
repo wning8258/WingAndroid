@@ -1,0 +1,4 @@
+<GradleProjectSettings>
+  <option name="delegatedBuild" value="false"/>		//新增这行即可
+  ...
+</GradleProjectSettings>

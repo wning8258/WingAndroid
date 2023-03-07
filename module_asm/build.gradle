@@ -39,7 +39,7 @@ dependencies {
     compileOnly localGroovy()
 
     //写transform必须添加这个（包在这个里）
-    implementation 'com.android.tools.build:gradle:3.6.3'
+    implementation 'com.android.tools.build:gradle:4.0.0'
 
 
     //view binding的本质 https://juejin.cn/post/6844904106268557326
