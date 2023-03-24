@@ -10,4 +10,6 @@
     <color name="qiq_room_fansgroup_toast_bg_stroke">#ac00e4</color>
     <color name="qiq_room_fansgroup_toast_name_stroke">#fffccb</color>
     <color name="qiq_room_fansgroup_toast_name_fill">#ff4800</color>
+    <color name="popular">#ff76a5</color>
+    <color name="star">#ff0057</color>
 </resources>

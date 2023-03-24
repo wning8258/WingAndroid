@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="isLoading" type="Boolean" />
+        <variable name="isEmpty" type="Boolean" />
+        <variable name="vm" type="com.wing.android.mvvm.DynamicTodayContributionViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isVisible="@{!isLoading &amp;&amp; !isEmpty}"/>
+    <ImageView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:isVisible="@{!isLoading &amp;&amp; isEmpty}"
+    />
+    <ImageView
+        android:id="@+id/loading_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:isVisible="@{isLoading}"
+    />
+    </RelativeLayout>
+
+</layout>
+

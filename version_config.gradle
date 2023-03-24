@@ -3,20 +3,20 @@ ext {
     versionCode1 = "115"
     versionName1 = "1.1.5"
 
-    kotlin_version = '1.4.32'
+    kotlin_version = '1.6.0'
 
     android = [
-            AndroidBuildToolsVersion : "28.0.3",
+            AndroidBuildToolsVersion : "29.0.2",
             AndridMinSdkVersion : 19,
             AndroidTargetSdkVersion : 28,
-            AndroidCompileSdkVersion : 28,
+            AndroidCompileSdkVersion : 31,
             applicationId : "com.wing.android",
     ]
 
     googlesupportVersion= '1.0.0-beta01'
 
     googleDependencies = [
-            appcompat_v7: "androidx.appcompat:appcompat:1.1.0-alpha01",
+            appcompat_v7: "androidx.appcompat:appcompat:1.4.2",
             design : "com.google.android.material:material:${googlesupportVersion}",
             support_v4 : "androidx.legacy:legacy-support-v4:${googlesupportVersion}",
             recyclerview_v7: "androidx.recyclerview:recyclerview:${googlesupportVersion}",

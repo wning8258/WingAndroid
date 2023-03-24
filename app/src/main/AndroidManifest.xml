@@ -8,7 +8,6 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -112,6 +111,15 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name="com.wning.demo.architecture.DataBindingActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".mvvm.basicsample.ui.MvvmBasicSampleActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".mvvm.basicsample.ui.ObservableFieldActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".mvvm.basicsample.ui.ViewModelActivity"
             android:theme="@style/AppTheme"/>
 
 

@@ -66,7 +66,7 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
         //头部点击事件
         viewBinding.navigationView?.getHeaderView(0)?.setOnClickListener { LogUtils.i(TAG, "NavigationView head clicked") }
         //item点击事件
-        viewBinding.navigationView?.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { menuItem ->
+        viewBinding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.customView -> switchFragment(CustomViewFragment())
                 R.id.anim -> switchFragment(AnimFragment())
@@ -77,7 +77,7 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
             menuItem.isChecked = true
             viewBinding.drawerLayout?.closeDrawers()
             true
-        })
+        }
         /**
          * if (((MainActivity2)this).mFragmentManager == null) {
         FragmentManager var10001 = this.getSupportFragmentManager();

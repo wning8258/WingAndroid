@@ -17,6 +17,11 @@ android:divider="@drawable/divider">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="mvp" />
+    <Button
+        android:id="@+id/mvvm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="mvvm(Basic Sample)" />
 
     <Button
         android:id="@+id/frescoProducer"

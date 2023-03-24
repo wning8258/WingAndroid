@@ -1,6 +1,7 @@
 package com.wing.android.lru.resource;
 
-import com.example.customglide.util.Tool;
+
+import com.wing.android.lru.util.Tool;
 
 public class Key {
 
