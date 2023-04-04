@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 
-import com.wning.demo.utils.UIUtils;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
+
+import com.wning.demo.utils.UIUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -23,6 +23,13 @@ public abstract class BaseActivity<T extends ViewBinding> extends AppCompatActiv
 
     protected T viewBinding;
     private Class<T> className;
+
+    /**
+     * 初始化UI
+     */
+    protected void initUI() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -58,7 +58,7 @@ class ObservableFieldActivity : AppCompatActivity() {
  * Adds support for binding tints to AppCompatImageView.
  * See related [bug](https://b.corp.google.com/issues/152953070?pli=1)
  */
-@BindingAdapter("app:tint")
+@BindingAdapter("tint")
 fun ImageView.setImageTint(@ColorInt color: Int) {
     setColorFilter(color)
 }

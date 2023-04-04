@@ -375,6 +375,10 @@ dependencies {
 
     implementation  'io.github.scwang90:refresh-layout-kernel:2.0.5'      //核心必须依赖
 
+    //LiveEventBus
+    implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+
+
 }
 
 this.getParentProject()

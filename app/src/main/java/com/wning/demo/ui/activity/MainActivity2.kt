@@ -3,17 +3,15 @@ package com.wning.demo.ui.activity
 import android.app.Activity
 import android.graphics.Point
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.os.MessageQueue
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.viewbinding.ViewBinding
-import com.google.android.material.navigation.NavigationView
 import com.guagua.modules.utils.LogUtils
 import com.wing.android.IpcFragment
 import com.wing.android.R
@@ -100,6 +98,9 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
         testKotlin()
 
 
+        //非静态匿名内部类发送延迟消息，然后立即点击返回按钮
+        //非静态匿名内部类发送延迟消息，然后立即点击返回按钮
+        Handler().postDelayed(Runnable { println() }, 10000)
     }
     private fun testKotlin() {
         Looper.myQueue().addIdleHandler ({ ->
