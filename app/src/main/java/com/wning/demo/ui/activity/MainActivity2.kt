@@ -8,25 +8,32 @@ import android.os.Looper
 import android.os.MessageQueue
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.guagua.modules.utils.LogUtils
 import com.wing.android.IpcFragment
 import com.wing.android.R
 import com.wing.android.databinding.ActivityMain2Binding
 import com.wning.demo.BaseActivity
+import com.wning.demo.kotlin.coroutine.func1
+import com.wning.demo.kotlin.coroutine.func2
 import com.wning.demo.ui.fragment.AnimFragment
 import com.wning.demo.ui.fragment.ArchitectureFragment
 import com.wning.demo.ui.fragment.CustomViewFragment
 import com.wning.demo.ui.fragment.NetworkFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
     // lateinit用于var
-    private lateinit var mFragmentManager: FragmentManager
+    private lateinit var mFragmentManager: androidx.fragment.app.FragmentManager
     //延迟初始化，只有第一次调用的时候 才初始化，by lazy只用于val
-    private val mDefaultFragment: Fragment by lazy {
+    private val mDefaultFragment: androidx.fragment.app.Fragment by lazy {
         IpcFragment()
     }
 
@@ -47,6 +54,9 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Handle the splash screen transition.
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         viewBinding.navigationView?.setItemIconTintList(null)
         setSupportActionBar(viewBinding.toolbar)
@@ -95,13 +105,63 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
                 .commit()
         }
 
-        testKotlin()
+//        testKotlin()
 
 
         //非静态匿名内部类发送延迟消息，然后立即点击返回按钮
-        //非静态匿名内部类发送延迟消息，然后立即点击返回按钮
-        Handler().postDelayed(Runnable { println() }, 10000)
+//        Handler().postDelayed(Runnable { println() }, 10000)
+
+
+        /**
+         * com.wing.android                     I  main end
+        2023-07-04 20:31:37.485  3641-3641  System.out
+        com.wing.android
+        I  1协程执行—main_id_2
+        2023-07-04 20:31:37.787  3641-3641  System.out
+        com.wing.android                     I  2协程执行— main_id_2
+         */
+//        GlobalScope.launch(Dispatchers.Main) {
+//            func1()
+//            func2()
+//        }
+
+        GlobalScope.launch {
+            //withcontext 是串行执行的
+            val one = func1WithContext()
+            val two = func2WithContext(one)
+            val sum = one+two
+            println("两个方法返回值的和：${sum}")
+        }
+        println("main end")
     }
+
+    suspend fun func1WithContext():Int = withContext(Dispatchers.IO) {
+        delay(1500)
+        println("1协程执行—${Thread.currentThread().name}_id_${Thread.currentThread().id}")
+        1
+    }
+
+    suspend fun func2WithContext(one: Int):Int = withContext(Dispatchers.IO) {
+        delay(300)
+        println( "2协程执行— ${Thread.currentThread().name}_id_${Thread.currentThread().id}")
+        2+one
+    }
+
+    suspend fun func1() {
+        println("1协程执行—start")
+
+        delay(1500)
+        println("1协程执行—${Thread.currentThread().name}_id_${Thread.currentThread().id} end")
+    }
+
+    suspend fun func2() {
+        println("2协程执行—start")
+
+        delay(300)
+        println( "2协程执行— ${Thread.currentThread().name}_id_${Thread.currentThread().id} end")
+
+    }
+
     private fun testKotlin() {
         Looper.myQueue().addIdleHandler ({ ->
             println("queueIdle return true")
