@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import com.wning.demo.ActivityTracker
 import com.wning.demo.ui.activity.MainActivity2
@@ -15,6 +16,9 @@ var currentDarkMode: Int = 0
     set(value) {
         field = value
         AppCompatDelegate.setDefaultNightMode(value)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            (AppContext.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager).setApplicationNightMode(AppInfoSPManager.getInstance().darkMode)
+//        }
         AppInfoSPManager.getInstance().darkMode = value
         ActivityTracker.foreground?.let {
             val intent = Intent(it, MainActivity2::class.java)
@@ -35,6 +39,9 @@ fun switchMode(toMode:Int) {
 
 fun initNightMode() {
     AppCompatDelegate.setDefaultNightMode(AppInfoSPManager.getInstance().darkMode)
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//        (AppContext.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager).setApplicationNightMode(AppInfoSPManager.getInstance().darkMode)
+//    }
     //更新 appcontext,使其支持获取黑夜模式的color、drawable
     val res: Resources = AppContext.resources
     val configuration = Configuration(res.configuration)

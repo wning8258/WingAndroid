@@ -2,12 +2,14 @@ package com.wning.demo.ui.activity
 
 import android.app.Activity
 import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.MessageQueue
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.customview.widget.ViewDragHelper
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,11 +20,15 @@ import com.wing.android.R
 import com.wing.android.databinding.ActivityMain2Binding
 import com.wning.demo.BaseActivity
 import com.wning.demo.kotlin.coroutine.func1
+import com.wning.demo.kotlin.coroutine.func1WithContext
 import com.wning.demo.kotlin.coroutine.func2
+import com.wning.demo.kotlin.coroutine.func2WithContext
 import com.wning.demo.ui.fragment.AnimFragment
 import com.wning.demo.ui.fragment.ArchitectureFragment
 import com.wning.demo.ui.fragment.CustomViewFragment
 import com.wning.demo.ui.fragment.NetworkFragment
+import com.wning.demo.utils.currentDarkMode
+import com.wning.demo.utils.getSystemDarkMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -55,9 +61,19 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition.
-        val splashScreen = installSplashScreen()
+
+        installSplashScreen()
 
         super.onCreate(savedInstanceState)
+        //切换 splash screen
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (currentDarkMode != AppCompatDelegate.MODE_NIGHT_YES) {
+                splashScreen.setSplashScreenTheme(R.style.Theme_App_Starting)
+            } else {
+                splashScreen.setSplashScreenTheme(R.style.Theme_App_Starting2)
+
+            }
+        }
         viewBinding.navigationView?.setItemIconTintList(null)
         setSupportActionBar(viewBinding.toolbar)
         val mToggle = ActionBarDrawerToggle(
