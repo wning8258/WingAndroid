@@ -21,10 +21,13 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.tencent.mmkv.MMKV;
 import com.umeng.commonsdk.UMConfigure;
 import com.wing.android.BuildConfig;
 import com.wing.android.R;
 import com.wning.demo.net.volley.data.RequestManager;
+import com.wning.demo.utils.DarkModeKt;
+import com.wning.demo.utils.ServiceLocator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +59,13 @@ public class MyApplication  extends MultiDexApplication {
         //Trace.beginSection("AppOncreate");
 
         mInstance=this;
+        MMKV.initialize(this);
 
+        ServiceLocator.appContext = this;
+
+        registerActivityLifecycleCallbacks(ActivityTracker.INSTANCE);
+
+        DarkModeKt.initNightMode();
 
 
         initImageLoader();

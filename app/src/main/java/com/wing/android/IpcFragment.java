@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -15,6 +16,7 @@ import com.wing.android.aidl.BookManagerActivity;
 import com.wing.android.bindpool.BinderPoolActivity;
 import com.wing.android.databinding.ActivityIpcBinding;
 import com.wing.android.messenger.MessengerActivity;
+import com.wning.demo.utils.DarkModeKt;
 
 /**
  * 进程间通信
@@ -39,8 +41,10 @@ public class IpcFragment extends Fragment implements View.OnClickListener {
         mainBinding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                int toMode  = DarkModeKt.getCurrentDarkMode()!= AppCompatDelegate.MODE_NIGHT_YES?
+                        AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO;
+                    DarkModeKt.switchMode(toMode);
             }
         });
 
