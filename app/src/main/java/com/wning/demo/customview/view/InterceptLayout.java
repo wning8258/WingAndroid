@@ -1,10 +1,11 @@
 package com.wning.demo.customview.view;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.guagua.modules.utils.LogUtils;
 
@@ -48,23 +49,25 @@ public class InterceptLayout extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //不拦截down,拦截后续，InterceptView会执行down cancel
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
                 LogUtils.i(TAG,"onInterceptTouchEvent ACTION_DOWN");
-                break;
+//                break;
+                return false;
            //     return true; //拦截掉之后，后续所有的onInterceptTouchEvent都不再执行了（即父view拦截掉事件后之后，不再可能把事件重新交给子view）
-            case MotionEvent.ACTION_MOVE:
-                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_MOVE");
-                break;
-               // return true;  //拦截掉之后，后续所有的onInterceptTouchEvent都不再执行了（即父view拦截掉事件后之后，不再可能把事件重新交给子view）
-            case MotionEvent.ACTION_UP:
-                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_UP");
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_CANCEL");
-                break;
+//            case MotionEvent.ACTION_MOVE:
+//                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_MOVE");
+//                break;
+//               // return true;  //拦截掉之后，后续所有的onInterceptTouchEvent都不再执行了（即父view拦截掉事件后之后，不再可能把事件重新交给子view）
+//            case MotionEvent.ACTION_UP:
+//                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_UP");
+//                break;
+//            case MotionEvent.ACTION_CANCEL:
+//                LogUtils.i(TAG,"onInterceptTouchEvent ACTION_CANCEL");
+//                break;
         }
-        return false;
+        return true;
     }
 
     @Override

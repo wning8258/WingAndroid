@@ -14,10 +14,19 @@
         <com.wning.demo.customview.view.test.FontMetricsView android:layout_width="match_parent"
                                                              android:layout_height="100dp"/>
 
+        <Button
+            android:id="@+id/intercept_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Intercept"/>
+
         <com.wning.demo.customview.CanvasView
             android:background="#000000"
             android:layout_width="match_parent"
             android:layout_height="800dp"/>
+
+
+
 
     </LinearLayout>
 </ScrollView>

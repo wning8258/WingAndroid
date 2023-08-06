@@ -1,6 +1,9 @@
-apply plugin: 'com.novoda.bintray-release'
-apply plugin: 'groovy'
-apply plugin: 'maven'
+
+plugins {
+    id 'com.novoda.bintray-release'
+    id 'groovy'
+    id 'maven-publish'
+}
 
 
 publish {
@@ -15,20 +18,33 @@ publish {
 
 
 //配置本地仓库
-uploadArchives {
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //分组，也可以说是仓库目录。
+//            pom.groupId = 'com.wing.android'
+//            //可以说最后一层目录，里面存的是aar的各种版本文件夹与库的配置。
+//            pom.artifactId = 'asm'
+//            //版本文件夹名称，用于存放aar的各种文件与配置
+//            pom.version = "0.0.7"
+//            //maven本地仓库的目录，
+//            repository(url:uri(localRepo))
+//        }
+//    }
+//}
+
+
+group = 'com.wing.android'
+version = '2.0.0'
+
+publishing {
     repositories {
-        mavenDeployer {
-            //分组，也可以说是仓库目录。
-            pom.groupId = 'com.wing.android'
-            //可以说最后一层目录，里面存的是aar的各种版本文件夹与库的配置。
-            pom.artifactId = 'asm'
-            //版本文件夹名称，用于存放aar的各种文件与配置
-            pom.version = "0.0.7"
-            //maven本地仓库的目录，
-            repository(url:uri(localRepo))
+        maven {
+            url = uri(localRepo)
         }
     }
 }
+
 
 
 dependencies {

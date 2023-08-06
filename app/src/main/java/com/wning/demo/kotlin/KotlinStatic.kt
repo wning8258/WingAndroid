@@ -19,8 +19,22 @@ class KotlinStatic {
             println("this is static method")
         }
     }
+
+    fun main() {
+        //非静态内部类，需要外部类的对象
+        val innerClass = OuterClass().InnerClass()
+        //静态内部类，不需要外部类的对象
+        val staticInnerClass = OuterClass.StaticInnerClass()
+    }
 }
 
 class A{
 
+}
+
+class OuterClass {
+    //非静态内部类
+    inner class InnerClass{}
+    //静态内部类
+    class StaticInnerClass{}
 }

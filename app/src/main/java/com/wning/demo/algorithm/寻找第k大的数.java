@@ -16,9 +16,66 @@ import java.util.Arrays;
 public class 寻找第k大的数 {
     public static void main(String[] args) {
         寻找第k大的数 instance =new 寻找第k大的数();
-        int a[]= {6,4,8,7,1,5,3,2};
-        int kth = instance.findKth(a, 0, a.length - 1, 6);
+//        int a[]= {6,4,8,7,1,5,3,2};
+        int a[]= {3,2,1,5,6,4};
+
+//        int result = instance.findKth(a, 0,a.length-1,2);
+//        System.out.println(result);
+
+        int kth = instance.findKthLargest(a, 2);
         System.out.println(kth);
+    }
+
+    public int findKthLargest(int[] nums, int k) {
+        if (nums.length < k) {
+            return -1;
+        }
+        return quicksort(nums,0,nums.length-1,k);
+    }
+
+    private int quicksort(int[] nums,int left,int right,int k) {
+        if (left >right) {
+            return -1;
+        }
+        int pos = partition(nums,left,right);
+        System.out.println("part :" + pos + "," + Arrays.toString(nums));
+
+        if (k == pos -left+1) {
+            System.out.println("k就是要找的");
+
+            return nums[pos];
+        } else if (k > pos - left +1) {
+            System.out.println("k在右边");
+
+            return quicksort(nums,pos+1,right,k-(pos - left +1));
+        } else {
+            System.out.println("k在左边");
+
+            return quicksort(nums,left,pos-1,k);
+        }
+    }
+
+    private int partition(int a[],int left,int right) {
+        if (left>right) {
+            return -1;
+        }
+        int temp = a[left];
+        int temp2;
+        int i = left;
+        int j = right;
+        while(i!=j) {
+            while(j>i && a[j]<= temp) j--;
+            while(j>i && a[i]>= temp) i++;
+            if (i<j) {  //i和j交换
+                temp2=a[i];
+                a[i] = a[j];
+                a[j] = temp2;
+            }
+        }
+        //和左边的标志交换
+        a[left] = a[i];
+        a[i] = temp;
+        return i;
     }
 
     /**

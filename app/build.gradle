@@ -99,15 +99,15 @@ this.afterEvaluate { Project project ->
 //        output.outputFile = new File(output.outputFile.parent,apkName)
 //        println output.outputFile.name
 
-        variant.outputs.all {
-            outputFileName = apkName
-            println "outputFileName is ${outputFileName}"
-            //outputFileName is app-QQ-debug-1.0.apk
-            def task = variant.checkManifest
-            println "checkManifest name is ${task.name}"
-            //checkManifest name is checkQQDebugManifest
-            //checkManifest name is checkQQReleaseManifest
-        }
+//        variant.outputs.all {
+//            outputFileName = apkName
+//            println "outputFileName is ${outputFileName}"
+//            //outputFileName is app-QQ-debug-1.0.apk
+//            def task = variant.checkManifest
+//            println "checkManifest name is ${task.name}"
+//            //checkManifest name is checkQQDebugManifest
+//            //checkManifest name is checkQQReleaseManifest
+//        }
     }
 }
 

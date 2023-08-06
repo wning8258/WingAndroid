@@ -1,17 +1,7 @@
 package com.wing.buildsrc.plugin
 
-import com.android.build.api.transform.DirectoryInput
-import com.android.build.api.transform.Format
-import com.android.build.api.transform.JarInput
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Transform
-import com.android.build.api.transform.TransformException
-import com.android.build.api.transform.TransformInput
-import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.transform.TransformOutputProvider
+import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import org.apache.commons.io.FileUtils
-
 
 class WingTransform extends Transform{
 
@@ -63,7 +53,7 @@ class WingTransform extends Transform{
                         directoryInput.contentTypes, directoryInput.scopes,
                         Format.DIRECTORY)
                 println("Dir: ${directoryInput.file} , dest: ${dest}")
-                FileUtils.copyDirectory(directoryInput.file, dest)
+//                FileUtils.copyDirectory(directoryInput.file, dest)
             }
 
             /**
@@ -77,7 +67,7 @@ class WingTransform extends Transform{
                         jarInput.contentTypes, jarInput.scopes, Format.JAR)
                 println("Jar: ${jarInput.file} , dest: ${dest}")
 
-                FileUtils.copyFile(jarInput.file, dest)
+//                FileUtils.copyFile(jarInput.file, dest)
             }
         }
 

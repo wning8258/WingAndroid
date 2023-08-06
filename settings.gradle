@@ -16,3 +16,19 @@ include ':module_volley'
 rootProject.name = "WingAndroid"
 
 println "初始化阶段开始。。。"
+
+
+def wbapi(String proName, Closure configureClosure) {
+    try {
+        def ppp = project(proName)
+        if (configureClosure == null) {
+            project.dependencies.api(ppp)
+            getProject().dependencies.add()
+        } else {
+            project.dependencies.api(ppp, configureClosure)
+        }
+        sdkProjectDependencies.add(ppp)
+    } catch (UnknownProjectException e) {
+        chageDependency(proName, configureClosure)
+    }
+}

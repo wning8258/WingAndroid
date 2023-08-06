@@ -1,22 +1,17 @@
 package com.wning.demo;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Debug;
-import android.os.Trace;
-import android.os.Debug;
 import android.util.Log;
 
-import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.Wing;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
@@ -55,7 +50,7 @@ public class MyApplication  extends MultiDexApplication {
 //         * 路径 Context.getExternalFilesDir(String).
 //         * buffer size 默认为8M
 //         */
-//         Debug.startMethodTracing("WingAndroid");
+         Debug.startMethodTracing("WingAndroid");
 
         //traceview
         //Trace.beginSection("AppOncreate");
@@ -83,7 +78,6 @@ public class MyApplication  extends MultiDexApplication {
 //
 //        Fresco.initialize(getApplicationContext(),imagePipelineConfig);
 
-        //Debug.stopMethodTracing();
 
         //Trace.endSection();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
@@ -95,6 +89,9 @@ public class MyApplication  extends MultiDexApplication {
          */
         UMConfigure.setLogEnabled(BuildConfig.DEBUG);
         UMConfigure.init(this,"622b391e317aa877609205d0","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+
+        Debug.stopMethodTracing();
+
     }
 
 

@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdkVersion ext.android.AndridMinSdkVersion
         targetSdkVersion ext.android.AndroidTargetSdkVersion
-        versionCode 1
-        versionName "1.0"
     }
     buildTypes {
         release {
@@ -24,5 +22,5 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 }

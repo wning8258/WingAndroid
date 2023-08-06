@@ -120,3 +120,14 @@ fun  main () {
     KotlinUtils.create()
 }
 
+
+class Person1 {
+    var age:Int = 0
+    get() {
+        return field
+        //return 2
+    }
+    set(value) {
+        field = value
+    }
+}
