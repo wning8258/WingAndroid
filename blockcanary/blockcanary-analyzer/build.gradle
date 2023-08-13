@@ -3,7 +3,6 @@ apply from: 'gradle-mvn-push.gradle'
 def ext = rootProject.ext
 android {
     compileSdkVersion ext.android.AndroidCompileSdkVersion
-    buildToolsVersion ext.android.AndroidBuildToolsVersion
 
     defaultConfig {
         minSdkVersion ext.android.AndridMinSdkVersion

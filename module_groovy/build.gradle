@@ -1,5 +1,5 @@
 apply plugin: 'groovy'  //引入 groovy 插件，groovy 插件继承了 java 插件
-apply plugin: 'maven'
+//apply plugin: 'maven'
 apply from : "dependencies.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

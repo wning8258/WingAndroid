@@ -4,8 +4,9 @@
 apply plugin: 'groovy'
 
 repositories {
+    gradlePluginPortal()
     google()
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -15,6 +16,6 @@ dependencies {
     implementation localGroovy()
 
     //写transform必须添加这个（包在这个里）
-    implementation 'com.android.tools.build:gradle:7.4.1'
+    implementation 'com.android.tools.build:gradle:7.4.2'
 }
 

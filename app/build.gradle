@@ -1,6 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+
+plugins {
+    id 'com.android.application'
+    id  'kotlin-android'
+    id  'kotlin-kapt'
+}
+
 apply from: "tasks.gradle"
 //task depends相关
 apply from: "taskDepends.gradle"
@@ -46,10 +50,6 @@ apply plugin: 'com.efs.sdk.plugin'
 //            //......
 //    ]
 //}
-
-repositories {
-    mavenCentral()
-}
 
 
 
@@ -116,7 +116,6 @@ this.afterEvaluate { Project project ->
  */
 android {
     compileSdkVersion mCompileSdkVersion
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.wing.android"

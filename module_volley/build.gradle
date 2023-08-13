@@ -7,7 +7,6 @@ plugins {
 def ext = rootProject.ext
 android {
     compileSdkVersion ext.android.AndroidCompileSdkVersion
-    buildToolsVersion ext.android.AndroidBuildToolsVersion
 
     defaultConfig {
         minSdkVersion ext.android.AndridMinSdkVersion

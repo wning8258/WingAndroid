@@ -3,7 +3,7 @@ ext {
     versionCode1 = "115"
     versionName1 = "1.1.5"
 
-    kotlin_version = '1.6.0'
+    kotlin_version = '1.6.21'
 
     android = [
             AndroidBuildToolsVersion : "29.0.2",

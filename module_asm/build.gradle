@@ -1,21 +1,24 @@
 
 plugins {
-    id 'com.novoda.bintray-release'
+//    id 'com.novoda.bintray-release'
     id 'groovy'
-    id 'maven-publish'
+//    id 'maven-publish'
+    id 'com.android.library'
+
 }
 
 
-publish {
-    repoName = 'maven'  //仓库名，默认命就是maven
-    userOrg = 'wning8258'                 //bintray.com用户名
-    groupId = 'com.wing.android'             //jcenter上的路径
-    artifactId = 'asm'        //项目名称 (对应bintray上的package name)
-    publishVersion = '0.0.2'          //版本号
-    desc = 'asm 测试'
-    website = 'https://github.com/wning8258/WingAndroid'
-}
-
+//
+//publish {
+//    repoName = 'maven'  //仓库名，默认命就是maven
+//    userOrg = 'wning8258'                 //bintray.com用户名
+//    groupId = 'com.wing.android'             //jcenter上的路径
+//    artifactId = 'asm'        //项目名称 (对应bintray上的package name)
+//    publishVersion = '0.0.2'          //版本号
+//    desc = 'asm 测试'
+//    website = 'https://github.com/wning8258/WingAndroid'
+//}
+//
 
 //配置本地仓库
 //uploadArchives {
@@ -34,16 +37,16 @@ publish {
 //}
 
 
-group = 'com.wing.android'
-version = '2.0.0'
-
-publishing {
-    repositories {
-        maven {
-            url = uri(localRepo)
-        }
-    }
-}
+//group = 'com.wing.android'
+//version = '2.0.0'
+//
+//publishing {
+//    repositories {
+//        maven {
+//            url = uri(localRepo)
+//        }
+//    }
+//}
 
 
 
@@ -55,7 +58,7 @@ dependencies {
     compileOnly localGroovy()
 
     //写transform必须添加这个（包在这个里）
-    implementation 'com.android.tools.build:gradle:4.0.0'
+//    implementation 'com.android.tools.build:gradle:7.4.1'
 
 
     //view binding的本质 https://juejin.cn/post/6844904106268557326

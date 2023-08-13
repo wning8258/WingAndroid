@@ -10,17 +10,17 @@ dependencies {
     implementation 'com.squareup:javapoet:1.9.0'
 
 }
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-repositories {
-    mavenCentral()
-}
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//    }
+//}
+//repositories {
+//    mavenCentral()
+//}
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
