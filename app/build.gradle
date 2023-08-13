@@ -53,7 +53,7 @@ apply plugin: 'com.efs.sdk.plugin'
 
 
 
-def mCompileSdkVersion = 31
+def mCompileSdkVersion = 33
 
 def libAndroidAppcompat = "androidx.appcompat:appcompat:1.2.0"
 /**
