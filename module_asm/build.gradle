@@ -3,7 +3,7 @@ plugins {
 //    id 'com.novoda.bintray-release'
     id 'groovy'
 //    id 'maven-publish'
-    id 'com.android.library'
+//    id 'com.android.library'
 
 }
 
